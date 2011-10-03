@@ -1,0 +1,6 @@
+There's lots to do:
+
+* Make the script path agnostic.  Have it find data files via $0.
+  Come up with a sendible place to put temporary files.
+* Have a script to list/remove temporary files.
+* Have a script print a series of sed commands to fix the files.
