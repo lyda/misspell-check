@@ -1,8 +1,0 @@
-This is a series of scripts to check for misspelled words and is based
-on the Wikipedia list of common misspellings.
-
-http://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings/For_machines
-
-The list has been slightly modified to remove some changes that cause
-a number of false positives.  In particular ok->OK was removed (ok is
-frequently used in perl tests for instance).
