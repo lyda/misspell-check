@@ -1,5 +1,4 @@
 There's lots to do:
 
-* Have a script print a series of sed commands to fix the files.
-* Remove old shell scripts.
+* Add an option to print a series of sed commands to fix the files.
 * Add comments to python code.
