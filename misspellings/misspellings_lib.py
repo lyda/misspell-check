@@ -2658,7 +2658,6 @@ class Misspellings(object):
     'offred': ['offered'],
     'oftenly': ['often'],
     'oging': ['going', 'ogling'],
-    'ok': ['OK'],
     'omision': ['omission'],
     'omited': ['omitted'],
     'omiting': ['omitting'],
