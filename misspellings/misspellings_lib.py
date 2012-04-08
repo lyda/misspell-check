@@ -18,7 +18,7 @@ class Misspellings(object):
       self._misspelling_dict = {}
       with open(misspelling_list, 'r') as f:
         for line in f:
-          bad_word, correction = line.split(' ', 1)
+          bad_word, correction = line.strip().split(' ', 1)
           self._misspelling_dict.setdefault(bad_word, []).append(correction)
 
     self._files = []
@@ -2486,8 +2486,7 @@ class Misspellings(object):
     'moent': ['moment'],
     'moeny': ['money'],
     'mohammedans': ['muslims'],
-    'moil': ['mohel'],
-    'moil': ['soil'],
+    'moil': ['mohel', 'soil'],
     'moleclues': ['molecules'],
     'momento': ['memento'],
     'monestaries': ['monasteries'],
@@ -3248,8 +3247,7 @@ class Misspellings(object):
     'refereneces': ['references'],
     'referiang': ['referring'],
     'refering': ['referring'],
-    'refernce': ['reference'],
-    'refernce': ['references'],
+    'refernce': ['reference', 'references'],
     'refernces': ['references'],
     'referrence': ['reference'],
     'referrences': ['references'],

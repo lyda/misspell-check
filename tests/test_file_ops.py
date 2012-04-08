@@ -10,7 +10,15 @@ sys.path.insert(0, os.path.join(BASE_PATH, '..'))
 import misspellings.misspellings_lib as misspellings
 
 
+LOG_PATH = os.path.join(BASE_PATH, 'logs')
+
 class IntegerArithmenticTestCase(unittest.TestCase):
+  def setUp(self):
+    try:
+      os.mkdir(LOG_PATH)
+    except:
+      pass
+
   def testMissingMSList(self):
     self.assertRaises(IOError, misspellings.Misspellings,
                       None, os.path.join(BASE_PATH, 'missing_msl.txt'))
@@ -18,6 +26,27 @@ class IntegerArithmenticTestCase(unittest.TestCase):
   def testBrokenMSList(self):
     self.assertRaises(ValueError, misspellings.Misspellings, None,
         os.path.join(BASE_PATH, 'broken_msl.txt'))
+
+  def testGoodMSList(self):
+    ms = misspellings.Misspellings(
+        misspelling_list=os.path.join(BASE_PATH, 'example_msl.txt'))
+    # wc -l example_msl.txt
+    self.assertEquals(len(ms.dumpMisspellingList()), 4458)
+
+  def testExampleSameAsDefault(self):
+    dms = misspellings.Misspellings()
+    ems = misspellings.Misspellings(
+        misspelling_list=os.path.join(BASE_PATH, 'example_msl.txt'))
+    # wc -l example_msl.txt
+    default_msl = dms.dumpMisspellingList()
+    example_msl = ems.dumpMisspellingList()
+    for fn, msl in (('msl_ex', example_msl), ('msl_de', default_msl)):
+      f = open(os.path.join(LOG_PATH,
+                            'testExampleSameAsDefault.%s.tmp' % fn), 'w')
+      for w, c in msl:
+        f.write('%s %s\n' % (w, c))
+      f.close()
+    self.assertEquals(default_msl, example_msl)
 
   def testMissingFile(self):
     ms = misspellings.Misspellings(

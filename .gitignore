@@ -1,3 +1,4 @@
 *.pyc
 misspellings.egg-info
 .*.swp
+tests/logs
