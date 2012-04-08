@@ -1,5 +1,4 @@
 There's lots to do:
 
 * Add an option to print a series of sed commands to fix the files.
-* Script to download the latest word list from wikipedia.
-* Add a -d flag to dump the misspelling list to misspelligs.py.
+* Tests for cli.
