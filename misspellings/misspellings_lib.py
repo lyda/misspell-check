@@ -1,7 +1,19 @@
 #!/usr/bin/python
 
 class Misspellings(object):
+  """Detects misspelled words in files."""
   def __init__(self, files=None, misspelling_list=None):
+    """Initialises an Misspellings instance.
+
+    Args:
+      files: List of files to check.  More can be added with add().
+      misspelling_list: Filename with a list of misspelled words
+                        and their alternatives.
+
+    Raises:
+      IOError: Raised if misspelling_list can't be found.
+      ValueError: Raised if misspelling_list isn't correctly formatted.
+    """
     if misspelling_list:
       self._misspelling_dict = {}
       with open(misspelling_list, 'r') as f:
@@ -14,8 +26,10 @@ class Misspellings(object):
       self.add(files)
 
   def add(self, files):
-    for fn in files:
-      self._files.append(fn)
+    if files.__class__.__name__ == 'str':
+      self._files.append(files)
+    else:
+      self._files.extend(files)
 
   def check(self):
     errors = []

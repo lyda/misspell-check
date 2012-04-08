@@ -5,17 +5,32 @@ import sys
 import unittest
 
 # Set the path to load the module being tested.
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+BASE_PATH = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(BASE_PATH, '..'))
 import misspellings.misspellings_lib as misspellings
 
 
 class IntegerArithmenticTestCase(unittest.TestCase):
-  def testMissingList(self):
+  def testMissingMSList(self):
     self.assertRaises(IOError, misspellings.Misspellings,
-                      None, 'missing_msl.txt')
-  def testMultiply(self):
-    self.assertEqual((0 * 10), 0)
-    self.assertEqual((5 * 8), 40)
+                      None, os.path.join(BASE_PATH, 'missing_msl.txt'))
+
+  def testBrokenMSList(self):
+    self.assertRaises(ValueError, misspellings.Misspellings, None,
+        os.path.join(BASE_PATH, 'broken_msl.txt'))
+
+  def testMissingFile(self):
+    ms = misspellings.Misspellings(
+        files=os.path.join(BASE_PATH, 'missing_source.c'))
+    errors, results = ms.check()
+    self.assertEquals(len(errors), 1)
+
+  def testMissingFiles(self):
+    ms = misspellings.Misspellings(files=[
+      os.path.join(BASE_PATH, 'missing_source_%d.c' % i)
+      for i in xrange(10)])
+    errors, results = ms.check()
+    self.assertEquals(len(errors), 10)
 
 if __name__ == '__main__':
   unittest.main()
