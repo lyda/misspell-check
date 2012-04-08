@@ -386,6 +386,7 @@ aranged arranged
 arangement arrangement
 arbitarily arbitrarily
 arbitary arbitrary
+archaelogical archaeological
 archaelogists archaeologists
 archaelogy archaeology
 archaoelogy archeology
@@ -526,7 +527,7 @@ auxillaries auxiliaries
 auxillary auxiliary
 auxilliaries auxiliaries
 auxilliary auxiliary
-availabe  available
+availabe available
 availablity availability
 availaible available
 availble available
@@ -1130,7 +1131,6 @@ coverted coveted
 cpoy coy
 cpoy copy
 creaeted created
-creche creche
 creedence credence
 critereon criterion
 criterias criteria
@@ -1755,6 +1755,7 @@ florescent fluorescent
 flourescent fluorescent
 flourine fluorine
 fluorish flourish
+flourishment flourishing
 follwoing following
 folowing following
 fomed formed
@@ -1829,9 +1830,7 @@ ganster gangster
 garantee guarantee
 garanteed guaranteed
 garantees guarantees
-gardai gardai
 garnison garrison
-gauarana guarana
 gaurantee guarantee
 gauranteed guaranteed
 gaurantees guarantees
@@ -1917,6 +1916,7 @@ Habsbourg Habsburg
 haemorrage haemorrhage
 haev have
 haev heave
+halarious hilarious
 Hallowean Hallowe'en
 Hallowean Halloween
 halp help
@@ -2094,6 +2094,7 @@ impliment implement
 implimented implemented
 imploys employs
 importamt important
+impressario impresario
 imprioned imprisoned
 imprisonned imprisoned
 improvision improvisation
@@ -2675,11 +2676,9 @@ neverthless nevertheless
 newletters newsletters
 Newyorker New Yorker
 nickle nickel
-nightfa;; nightfall
 nightime nighttime
 nineth ninth
 ninteenth nineteenth
-ninties 1990s
 ninty ninety
 nkow know
 nkwo know
@@ -2842,7 +2841,6 @@ owrk work
 owudl would
 oxigen oxygen
 oximoron oxymoron
-p0enis penis
 paide paid
 paitience patience
 palce place
@@ -3127,6 +3125,11 @@ primative primitive
 primatively primitively
 primatives primitives
 primordal primordial
+principlaity principality
+principaly principality
+principial principal
+principly principally
+prinicipal principal
 privalege privilege
 privaleges privileges
 priveledges privileges
@@ -3338,6 +3341,7 @@ recomended recommended
 recomending recommending
 recomends recommends
 recommedations recommendations
+recompence recompense
 reconaissance reconnaissance
 reconcilation reconciliation
 reconized recognized

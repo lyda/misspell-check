@@ -31,7 +31,7 @@ class MisspellingsTestCase(unittest.TestCase):
     ms = misspellings.Misspellings(
         misspelling_list=os.path.join(BASE_PATH, 'example_msl.txt'))
     # wc -l example_msl.txt
-    self.assertEquals(len(ms.dumpMisspellingList()), 4458)
+    self.assertEquals(len(ms.dumpMisspellingList()), 4462)
 
   def testExampleSameAsDefault(self):
     dms = misspellings.Misspellings()
