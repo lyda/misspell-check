@@ -12,7 +12,7 @@ import misspellings.misspellings_lib as misspellings
 
 LOG_PATH = os.path.join(BASE_PATH, 'logs')
 
-class IntegerArithmenticTestCase(unittest.TestCase):
+class MisspellingsTestCase(unittest.TestCase):
   def setUp(self):
     try:
       os.mkdir(LOG_PATH)
@@ -55,12 +55,20 @@ class IntegerArithmenticTestCase(unittest.TestCase):
     errors, results = ms.check()
     self.assertEquals(len(errors), 1)
 
-  def testMissingFiles(self):
+  def testMissingFile(self):
     ms = misspellings.Misspellings(files=[
       os.path.join(BASE_PATH, 'missing_source_%d.c' % i)
       for i in xrange(10)])
     errors, results = ms.check()
     self.assertEquals(len(errors), 10)
+    self.assertEquals(len(results), 0)
+
+  def testGoodFile(self):
+    ms = misspellings.Misspellings(files=[
+      os.path.join(BASE_PATH, 'nine_mispellings.c')])
+    errors, results = ms.check()
+    self.assertEquals(len(errors), 0)
+    self.assertEquals(len(results), 9)
 
 if __name__ == '__main__':
   unittest.main()
