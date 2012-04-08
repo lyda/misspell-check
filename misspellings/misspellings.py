@@ -51,6 +51,9 @@ if __name__ == '__main__':
     else:
       usage('Unknown option "%s"' % flag)
   ms = misspellings.Misspellings(files=files, misspelling_file=ms_file)
+  if dump_ms:
+    for w, c in ms.dumpMisspellingList():
+      print '%s %s' % (w, c)
   errors, results = ms.check()
   if not script_output:
     for res in results:

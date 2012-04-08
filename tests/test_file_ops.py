@@ -29,14 +29,14 @@ class MisspellingsTestCase(unittest.TestCase):
 
   def testGoodMSList(self):
     ms = misspellings.Misspellings(
-        misspelling_list=os.path.join(BASE_PATH, 'example_msl.txt'))
+        misspelling_file=os.path.join(BASE_PATH, 'example_msl.txt'))
     # wc -l example_msl.txt
     self.assertEquals(len(ms.dumpMisspellingList()), 4462)
 
   def testExampleSameAsDefault(self):
     dms = misspellings.Misspellings()
     ems = misspellings.Misspellings(
-        misspelling_list=os.path.join(BASE_PATH, 'example_msl.txt'))
+        misspelling_file=os.path.join(BASE_PATH, 'example_msl.txt'))
     # wc -l example_msl.txt
     default_msl = dms.dumpMisspellingList()
     example_msl = ems.dumpMisspellingList()
