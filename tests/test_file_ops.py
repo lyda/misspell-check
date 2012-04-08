@@ -46,7 +46,8 @@ class IntegerArithmenticTestCase(unittest.TestCase):
       for w, c in msl:
         f.write('%s %s\n' % (w, c))
       f.close()
-    self.assertEquals(default_msl, example_msl)
+    self.assertEquals(default_msl, example_msl,
+        'See logs in "%s" for dump of the list.' % LOG_PATH)
 
   def testMissingFile(self):
     ms = misspellings.Misspellings(

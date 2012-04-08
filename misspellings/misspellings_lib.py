@@ -26,12 +26,25 @@ class Misspellings(object):
       self.add(files)
 
   def add(self, files):
+    """Adds files to check.
+
+    Args:
+      files: List of files to check.
+    """
     if files.__class__.__name__ == 'str':
       self._files.append(files)
     else:
       self._files.extend(files)
 
   def check(self):
+    """Checks the files for misspellings.
+
+    Returns:
+      (errors, results)
+      errors: List of system errors, usually file access errors.
+      results: List of spelling errors - each tuple is filename,
+               line number and misspelled word.
+    """
     errors = []
     results = []
     for fn in self._files:
@@ -48,6 +61,14 @@ class Misspellings(object):
     return errors, results
 
   def suggestions(self, word):
+    """Returns a list of suggestions for a misspelled word.
+
+    Args:
+      word: The word to check.
+
+    Returns:
+      List of zero or more suggested replacements for word.
+    """
     return self._misspelling_dict.get(word, [])
 
   def dumpMisspellingList(self):
