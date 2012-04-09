@@ -21,6 +21,24 @@ def usage(msg=None):
     sys.exit(1)
   sys.exit(0)
 
+def print_file_context(fn, target_line_num, context=5):
+  line_num = 1
+  start_line = target_line_num - context
+  end_line = target_line_num + context
+  with open(fn, 'r') as f:
+    for line in f:
+      if (line_num > start_line) and (line_num < end_line):
+        if line_num == target_line_num:
+          print "+%5d %s" % (line_num, line),
+        else:
+          print " %5d %s" % (line_num, line),
+      line_num += 1
+
+def cmp_rev_line(a, b):
+  file_cmp = cmp(a[0], b[0])
+  if file_cmp == 0:
+    return cmp(b[1], a[1])
+  return file_cmp
 
 if __name__ == '__main__':
   try:
@@ -73,3 +91,8 @@ if __name__ == '__main__':
       print 'Not implemented yet.'
   else:
     print 'Not implemented yet.'
+    results.sort(cmp=cmp_rev_line)
+    for res in results:
+      print_file_context(res[0], res[1])
+      print '%s -> "%s"' % (res[2], ','.join(
+        ['"%s"' % w for w in ms.suggestions(res[2])]))
