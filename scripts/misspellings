@@ -13,6 +13,7 @@ def usage(msg=None):
   print '  -f file: File containing list of files to check.'
   print '  -m file: File containing list of misspelled words & corrections.'
   print '  -d     : Dump the list of misspelled words.'
+  print '  -i     : Interactively fix the file.'
   print '  -s     : Create a shell script to interactively correct the file.'
   print '  files: Zero or more files to check.'
   if msg is not None:
@@ -23,12 +24,13 @@ def usage(msg=None):
 
 if __name__ == '__main__':
   try:
-    flags, files = getopt.getopt(sys.argv[1:], 'f:m:dsvh')
+    flags, files = getopt.getopt(sys.argv[1:], 'f:m:dhisv')
   except getopt.GetoptError, e:
     usage(e)
   dump_ms = False
   ms_file = None
   script_output = False
+  interactive = False
   for flag, option in flags:
     if flag == '-d':
       dump_ms = True
@@ -44,6 +46,8 @@ if __name__ == '__main__':
         files.append(line.strip())
     elif flag == '-h':
       usage()
+    elif flag == '-i':
+      interactive = True
     elif flag == '-m':
       ms_file = option
     elif flag == '-s':
@@ -58,11 +62,14 @@ if __name__ == '__main__':
     for w, c in ms.dumpMisspellingList():
       print '%s %s' % (w, c)
   errors, results = ms.check()
-  if not script_output:
-    for res in results:
-      print '%s[%d]: %s -> %s' % (res[0], res[1], res[2], ','.join(
-        ['"%s"' % w for w in ms.suggestions(res[2])]))
-    for err in errors:
-      print 'ERROR: %s' % err
+  if not interactive:
+    if not script_output:
+      for res in results:
+        print '%s[%d]: %s -> %s' % (res[0], res[1], res[2], ','.join(
+          ['"%s"' % w for w in ms.suggestions(res[2])]))
+      for err in errors:
+        print 'ERROR: %s' % err
+    else:
+      print 'Not implemented yet.'
   else:
     print 'Not implemented yet.'
