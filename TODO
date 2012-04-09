@@ -1,5 +1,5 @@
 There's lots to do:
 
-* Add an option to print a series of sed commands to fix the files.
-* Tests for cli.
+* Implement option to print a series of sed commands to fix the files.
+* Implement option to interactively fix files.
 * Give some thought to supporting multiple languages?
