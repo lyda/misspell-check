@@ -1,0 +1,9 @@
+include README.md
+include TODO
+include LICENSE
+include *.py
+exclude *.pyc
+include *.sh
+recursive-include tests *.py *.c *.txt *_list *.tmp
+recursive-exclude tests *.pyc
+recursive-exclude tests/logs *
