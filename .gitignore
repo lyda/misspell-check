@@ -2,3 +2,5 @@
 misspellings.egg-info
 .*.swp
 tests/logs
+build/
+dist/
