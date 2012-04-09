@@ -47,7 +47,7 @@ if __name__ == '__main__':
     elif flag == '-m':
       ms_file = option
     elif flag == '-s':
-      pass
+      script_output = True
     elif flag == '-v':
       print 'Version 1.0'
       sys.exit(0)
