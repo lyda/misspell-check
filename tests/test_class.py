@@ -7,7 +7,7 @@ import unittest
 # Set the path to load the module being tested.
 BASE_PATH = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(BASE_PATH, '..'))
-import misspellings.misspellings_lib as misspellings
+import misspellings.check as misspellings
 
 
 LOG_PATH = os.path.join(BASE_PATH, 'logs')

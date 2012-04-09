@@ -7,7 +7,7 @@ import unittest
 
 BASE_PATH = os.path.dirname(__file__)
 LOG_PATH = os.path.join(BASE_PATH, 'logs')
-CLI = os.path.join(BASE_PATH, '..', 'misspellings', 'misspellings.py')
+CLI = os.path.join('..', 'scripts', 'misspellings')
 
 class MisspellingsCLITestCase(unittest.TestCase):
   """
@@ -29,45 +29,60 @@ class MisspellingsCLITestCase(unittest.TestCase):
       pass
 
   def testGoodFile(self):
-    p = subprocess.Popen([CLI,
-                          os.path.join(BASE_PATH, 'nine_mispellings.c')],
+    p = subprocess.Popen([CLI, 'nine_mispellings.c'],
+                         cwd=BASE_PATH,
+                         stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
+    self.assertEquals(p.stderr.read(), '')
     self.assertEquals(len(p.stdout.read().split('\n')), 10)
+    self.assertEquals(p.returncode, 0)
 
   def testBadFile(self):
-    p = subprocess.Popen([CLI,
-                          os.path.join(BASE_PATH, 'missing.c')],
+    p = subprocess.Popen([CLI, 'missing.c'],
+                         cwd=BASE_PATH,
+                         stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
+    self.assertEquals(p.stderr.read(), '')
     self.assertEquals(len(p.stdout.read().split('\n')), 2)
+    self.assertEquals(p.returncode, 0)
 
   def testGoodFlagF(self):
-    p = subprocess.Popen([CLI, '-f',
-                          os.path.join(BASE_PATH, 'good_file_list')],
+    p = subprocess.Popen([CLI, '-f', 'good_file_list'],
                          cwd=BASE_PATH,
+                         stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
+    self.assertEquals(p.stderr.read(), '')
     self.assertEquals(len(p.stdout.read().split('\n')), 10)
+    self.assertEquals(p.returncode, 0)
 
   def testBadFlagF(self):
-    p = subprocess.Popen([CLI, '-f',
-                          os.path.join(BASE_PATH, 'broken_file_list')],
+    p = subprocess.Popen([CLI, '-f', 'broken_file_list'],
+                         cwd=BASE_PATH,
+                         stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
+    self.assertEquals(p.stderr.read(), '')
     self.assertEquals(len(p.stdout.read().split('\n')), 2)
+    self.assertEquals(p.returncode, 0)
 
   def testGoodFlagD(self):
-    p = subprocess.Popen('( "%s" -d ; cat "%s" ) | sort | uniq -u' %
-                          (CLI, os.path.join(BASE_PATH, 'example_msl.txt')),
+    p = subprocess.Popen('( "%s" -d; cat "%s" ) |sort |uniq -u |tail -1' %
+                          (CLI, 'example_msl.txt'),
+                         cwd=BASE_PATH,
                          shell=True,
+                         stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
+    self.assertEquals(p.stderr.read(), '')
     self.assertEquals(p.stdout.read(), '')
+    self.assertEquals(p.returncode, 0)
 
   def testBadFlagM(self):
-    p = subprocess.Popen([CLI, '-d', '-m',
-                          os.path.join(BASE_PATH, 'broken_msl.txt')],
+    p = subprocess.Popen([CLI, '-d', '-m', 'broken_msl.txt'],
+                         cwd=BASE_PATH,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
@@ -76,8 +91,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
     self.assertEquals(p.returncode, 1)
 
   def testGoodFlagM(self):
-    p = subprocess.Popen([CLI, '-d', '-m',
-                          os.path.join(BASE_PATH, 'small_msl.txt')],
+    p = subprocess.Popen([CLI, '-d', '-m', 'small_msl.txt'],
+                         cwd=BASE_PATH,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()

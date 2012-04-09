@@ -1,8 +1,11 @@
 #!/usr/bin/python
 
-import sys
 import getopt
-import misspellings_lib as misspellings
+import os
+import sys
+BASE_PATH = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(BASE_PATH, '..'))
+import misspellings.check as misspellings
 
 def usage(msg=None):
   print 'USAGE: misspellings [-f file] [files]'

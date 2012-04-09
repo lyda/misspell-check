@@ -14,13 +14,13 @@ entry_points = {
 setup(
     name = "misspellings",
     version = "1.0",
-    url = 'http://github.org/lyda',
+    url = 'http://github.org/lyda/misspell-check',
     author = 'Kevin Lyda',
     author_email = 'kevin@ie.suberic.net',
     description = "A tool to detect misspellings",
     long_description=open('README.md').read(),
     packages = ['misspellings', ],
-    include_package_data = True,
+    scripts = ['scripts/misspellings', ],
     install_requires = requires,
     test_suite = 'tests.runall',
     # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
