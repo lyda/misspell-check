@@ -436,6 +436,7 @@ class Misspellings(object):
     'approximitely': ['approximately'],
     'aprehensive': ['apprehensive'],
     'apropriate': ['appropriate'],
+    'apropriately': ['appropriately'],
     'aproval': ['approval'],
     'aproximate': ['approximate'],
     'aproximately': ['approximately'],
