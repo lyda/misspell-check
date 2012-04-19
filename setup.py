@@ -13,7 +13,7 @@ entry_points = {
 
 setup(
     name = "misspellings",
-    version = "1.0",
+    version = "1.1",
     url = 'http://github.org/lyda/misspell-check',
     author = 'Kevin Lyda',
     author_email = 'kevin@ie.suberic.net',
@@ -22,7 +22,7 @@ setup(
     packages = ['misspellings', ],
     scripts = ['scripts/misspellings', ],
     install_requires = requires,
-    test_suite = 'tests.runall',
+    test_suite = 'tests',
     # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers = ['Development Status :: 5 - Production/Stable',
                    'Environment :: Console',

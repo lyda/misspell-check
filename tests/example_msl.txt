@@ -362,6 +362,7 @@ apprearance appearance
 apprieciate appreciate
 approachs approaches
 appropiate appropriate
+apropriately appropriately
 appropraite appropriate
 appropropiate appropriate
 approproximate approximate

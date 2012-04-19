@@ -28,10 +28,13 @@ class MisspellingsTestCase(unittest.TestCase):
         os.path.join(BASE_PATH, 'broken_msl.txt'))
 
   def testGoodMSList(self):
-    ms = misspellings.Misspellings(
-        misspelling_file=os.path.join(BASE_PATH, 'example_msl.txt'))
-    # wc -l example_msl.txt
-    self.assertEquals(len(ms.dumpMisspellingList()), 4462)
+    misspelling_file=os.path.join(BASE_PATH, 'example_msl.txt')
+    ms = misspellings.Misspellings(misspelling_file=misspelling_file)
+    lines = 0
+    with open(misspelling_file) as msf:
+      for unused_line in msf:
+        lines += 1
+    self.assertEquals(len(ms.dumpMisspellingList()), lines)
 
   def testExampleSameAsDefault(self):
     dms = misspellings.Misspellings()
