@@ -2,7 +2,10 @@
 
 import os
 import sys
-import unittest
+if sys.version_info < (2, 7):
+  import unittest2 as unittest
+else:
+  import unittest
 
 # Set the path to load the module being tested.
 BASE_PATH = os.path.dirname(__file__)
