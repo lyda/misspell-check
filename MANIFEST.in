@@ -1,4 +1,4 @@
-include LICENSE README.md TODO setup.py
+include LICENSE README TODO setup.py
 include misspellings
 include misspellings_lib.py
 recursive-include tests *.py *.txt *.c *_list

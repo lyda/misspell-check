@@ -1,7 +1,7 @@
 This is a Python library and tool to check for misspelled
 words in source code.  It does this by looking for words from
 a list of common misspellings.  The dictionary it uses to do this
-is based on the [Wikipedia list of common misspellings](http://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings/For_machines)
+is based on the Wikipedia list of common misspellings.
 
 The list has been slightly modified to remove some changes that cause
 a number of false positives.  In particular `ok->OK` was removed (ok is
@@ -19,4 +19,4 @@ source tree as an example):
     ../coreutils/src/tac.c[342]: unneccessary -> "unnecessary"
     ../coreutils/src/test.c[97]: supressed -> "suppressed"
 
-This file is in [Markdown syntax](http://daringfireball.net/projects/markdown/syntax)
+* http://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings/For_machines

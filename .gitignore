@@ -1,5 +1,6 @@
-*.pyc
-.*.swp
-tests/logs
+MANIFEST
 build/
 dist/
+tests/logs
+*.pyc
+.*.swp
