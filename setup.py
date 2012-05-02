@@ -1,36 +1,132 @@
 #!/usr/bin/env python
-from setuptools import setup
 
-requires = []
+"""Installer for misspelling-check.
 
-try:
-    import re
-except ImportError:
-    requires.append('re')
+This installs the misspelling command and the misspellings.check module.
+"""
 
-entry_points = {
-}
+import os
+import sys
+from distutils import log
+from distutils.core import setup
+from distutils.core import Command
+if sys.version_info < (2, 7):
+  import unittest2 as unittest
+else:
+  import unittest
+
+BASE_DIR = os.path.dirname(globals().get('__file__', os.getcwd()))
+
+
+class TestCommand(Command):
+  description = 'Runs all available tests.'
+  user_options = [ ]
+
+  def initialize_options(self):
+    pass
+
+  def finalize_options(self):
+    pass
+
+  def run(self):
+    test_dir = os.path.join(BASE_DIR, 'tests')
+
+    tests = unittest.TestLoader().discover(test_dir)
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(tests)
+    if not result.wasSuccessful():
+      sys.exit(1)
+
+class CleanCommand(Command):
+  description = 'Remove all generated files.'
+  user_options = [ ]
+
+  def initialize_options(self):
+    pass
+
+  def finalize_options(self):
+    pass
+
+  def run(self):
+    # Configure for this project.
+    suffixes2del = [ 'MANIFEST', '.pyc' ]
+    dirs2del = [ './build', './dist', './tests/logs' ]
+    dirs2ign = [ './.git' ]
+    # End config.
+    doomed = set()
+    # Change to base dir.
+    os.chdir(BASE_DIR)
+    for root, dirs, files in os.walk('.'):
+      # Handle root dirs.
+      if root in dirs2ign:
+        continue
+      if root in dirs2del:
+        doomed.add(root)
+      # Handle files.
+      for f in files:
+        accused = os.path.join(root, f)
+        for suffix in suffixes2del:
+          if f.endswith(suffix):
+            doomed.add(accused)
+            break
+        if accused not in doomed:
+          for d2del in dirs2del:
+            if accused.startswith(d2del):
+              doomed.add(accused)
+              break
+      # Handle dirs.
+      for d in dirs:
+        accused = os.path.join(root, d)
+        for d2ign in dirs2ign:
+          if accused.startswith(d2ign):
+            dirs.remove(d)
+            break
+        if d in dirs:
+          for d2del in dirs2del:
+            if accused.startswith(d2del):
+              doomed.add(accused)
+              break
+    # Probably not required, but just to be safe.
+    for accused in doomed:
+      for d2ign in dirs2ign:
+        if accused.startswith(d2ign):
+          doomed.remove(accused)
+          break
+    for accused in sorted(doomed, reverse=True):
+      log.info('removing "%s"', os.path.normpath(accused))
+      if not self.dry_run:
+        try:
+          os.unlink(accused)
+        except:
+          try:
+            os.rmdir(accused)
+          except:
+            log.warn('unable to remove "%s"', os.path.normpath(accused))
 
 setup(
-    name = "misspellings",
-    version = "1.1",
-    url = 'http://github.org/lyda/misspell-check',
-    author = 'Kevin Lyda',
-    author_email = 'kevin@ie.suberic.net',
-    description = "A tool to detect misspellings",
-    long_description=open('README.md').read(),
-    packages = ['misspellings', ],
-    scripts = ['scripts/misspellings', ],
-    install_requires = requires,
-    test_suite = 'tests',
-    # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
-    classifiers = ['Development Status :: 5 - Production/Stable',
-                   'Environment :: Console',
-                   'License :: OSI Approved :: GNU General Public License v3',
-                   'Operating System :: OS Independent',
-                   'Programming Language :: Python :: 2.5',
-                   'Programming Language :: Python :: 2.6',
-                   'Programming Language :: Python :: 2.7',
-                   'Topic :: Utilities',
-                   ],
+  cmdclass={'test': TestCommand,
+            'dist_clean': CleanCommand
+           },
+  name = "misspellings",
+  version = "1.1",
+  url = 'http://github.org/lyda/misspell-check',
+  author = 'Kevin Lyda',
+  author_email = 'kevin@ie.suberic.net',
+  description = "A tool to detect misspellings",
+  long_description=open('README.md').read(),
+  py_modules = ['misspellings_lib.py'],
+  scripts = ['misspellings', ],
+  keywords='check code spelling spellcheck',
+  license = 'GNU General Public License v3',
+  platforms = ['POSIX'],
+  # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
+  classifiers = ['Development Status :: 5 - Production/Stable',
+                 'Environment :: Console',
+                 'License :: OSI Approved :: GNU General Public License v3',
+                 'Operating System :: OS Independent',
+                 'Programming Language :: Python :: 2.5',
+                 'Programming Language :: Python :: 2.6',
+                 'Programming Language :: Python :: 2.7',
+                 'Topic :: Utilities',
+                 ],
 )

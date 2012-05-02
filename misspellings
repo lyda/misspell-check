@@ -5,7 +5,7 @@ import os
 import sys
 BASE_PATH = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(BASE_PATH, '..'))
-import misspellings.check as misspellings
+import misspellings_lib as misspellings
 
 def usage(msg=None):
   print 'USAGE: misspellings [-f file] [files]'

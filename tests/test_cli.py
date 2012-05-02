@@ -10,7 +10,7 @@ else:
 
 BASE_PATH = os.path.dirname(__file__)
 LOG_PATH = os.path.join(BASE_PATH, 'logs')
-CLI = os.path.join('..', 'scripts', 'misspellings')
+CLI = os.path.join('..', 'misspellings')
 
 class MisspellingsCLITestCase(unittest.TestCase):
   """

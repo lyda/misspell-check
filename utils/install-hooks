@@ -5,7 +5,7 @@ if [[ ! -f $THIS_GIT_DIR/.git/hooks/pre-commit ]]; then
   cat > $THIS_GIT_DIR/.git/hooks/pre-commit << EOF
 #!/bin/sh
 
-./tests/runall.py
+./setup.py test
 EOF
   chmod 755 $THIS_GIT_DIR/.git/hooks/pre-commit
 fi
