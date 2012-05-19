@@ -11,6 +11,7 @@ else:
 BASE_PATH = os.path.dirname(__file__)
 LOG_PATH = os.path.join(BASE_PATH, 'logs')
 
+
 class MisspellingsTestCase(unittest.TestCase):
   def setUp(self):
     try:
@@ -27,7 +28,7 @@ class MisspellingsTestCase(unittest.TestCase):
         os.path.join(BASE_PATH, 'broken_msl.txt'))
 
   def testGoodMSList(self):
-    misspelling_file=os.path.join(BASE_PATH, 'example_msl.txt')
+    misspelling_file = os.path.join(BASE_PATH, 'example_msl.txt')
     ms = misspellings.Misspellings(misspelling_file=misspelling_file)
     lines = 0
     with open(misspelling_file) as msf:

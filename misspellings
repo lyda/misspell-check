@@ -7,6 +7,7 @@ BASE_PATH = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(BASE_PATH, '..'))
 import misspellings_lib as misspellings
 
+
 def usage(msg=None):
   print('USAGE: misspellings [-f file] [files]')
   print('Checks files for common spelling mistakes.')
@@ -21,6 +22,7 @@ def usage(msg=None):
     sys.exit(1)
   sys.exit(0)
 
+
 def print_file_context(fn, target_line_num, context=5):
   line_num = 1
   start_line = target_line_num - context
@@ -33,6 +35,7 @@ def print_file_context(fn, target_line_num, context=5):
         else:
           sys.stdout.write(' %5d %s' % (line_num, line))
       line_num += 1
+
 
 def cmp_rev_line(a, b):
   file_cmp = cmp(a[0], b[0])
