@@ -37,8 +37,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read(), '')
-    self.assertEquals(len(p.stdout.read().split('\n')), 10)
+    self.assertEquals(p.stderr.read().decode('utf8'), '')
+    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 10)
     self.assertEquals(p.returncode, 0)
 
   def testBadFile(self):
@@ -47,8 +47,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read(), '')
-    self.assertEquals(len(p.stdout.read().split('\n')), 2)
+    self.assertEquals(p.stderr.read().decode('utf8'), '')
+    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 2)
     self.assertEquals(p.returncode, 0)
 
   def testGoodFlagF(self):
@@ -57,8 +57,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read(), '')
-    self.assertEquals(len(p.stdout.read().split('\n')), 10)
+    self.assertEquals(p.stderr.read().decode('utf8'), '')
+    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 10)
     self.assertEquals(p.returncode, 0)
 
   def testBadFlagF(self):
@@ -67,8 +67,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read(), '')
-    self.assertEquals(len(p.stdout.read().split('\n')), 2)
+    self.assertEquals(p.stderr.read().decode('utf8'), '')
+    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 2)
     self.assertEquals(p.returncode, 0)
 
   def testGoodFlagD(self):
@@ -79,8 +79,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read(), '')
-    self.assertEquals(p.stdout.read(), '')
+    self.assertEquals(p.stderr.read().decode('utf8'), '')
+    self.assertEquals(p.stdout.read().decode('utf8'), '')
     self.assertEquals(p.returncode, 0)
 
   def testBadFlagM(self):
@@ -89,8 +89,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertIn('ValueError', p.stderr.read())
-    self.assertEquals(p.stdout.read(), '')
+    self.assertIn('ValueError', p.stderr.read().decode('utf8'))
+    self.assertEquals(p.stdout.read().decode('utf8'), '')
     self.assertEquals(p.returncode, 1)
 
   def testGoodFlagM(self):
@@ -99,8 +99,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read(), '')
-    self.assertEquals(len(p.stdout.read().split('\n')), 3)
+    self.assertEquals(p.stderr.read().decode('utf8'), '')
+    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 3)
     self.assertEquals(p.returncode, 0)
 
 if __name__ == '__main__':
