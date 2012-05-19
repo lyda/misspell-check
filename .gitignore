@@ -4,3 +4,4 @@ dist/
 tests/logs
 *.pyc
 .*.swp
+.tox
