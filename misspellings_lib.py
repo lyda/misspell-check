@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 class Misspellings(object):
   """Detects misspelled words in files."""
   def __init__(self, files=None, misspelling_file=None):
