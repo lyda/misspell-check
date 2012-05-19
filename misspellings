@@ -29,9 +29,9 @@ def print_file_context(fn, target_line_num, context=5):
     for line in f:
       if (line_num > start_line) and (line_num < end_line):
         if line_num == target_line_num:
-          sys.stdout.write("+%5d %s" % (line_num, line))
+          sys.stdout.write('+%5d %s' % (line_num, line))
         else:
-          sys.stdout.write(" %5d %s" % (line_num, line))
+          sys.stdout.write(' %5d %s' % (line_num, line))
       line_num += 1
 
 def cmp_rev_line(a, b):
