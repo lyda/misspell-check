@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(globals().get('__file__', os.getcwd()))
 
 class TestCommand(Command):
   description = 'Runs all available tests.'
-  user_options = [ ]
+  user_options = []
 
   def initialize_options(self):
     pass
@@ -37,9 +37,10 @@ class TestCommand(Command):
     if not result.wasSuccessful():
       sys.exit(1)
 
+
 class CleanCommand(Command):
   description = 'Remove all generated files.'
-  user_options = [ ]
+  user_options = []
 
   def initialize_options(self):
     pass
@@ -49,9 +50,9 @@ class CleanCommand(Command):
 
   def run(self):
     # Configure for this project.
-    suffixes2del = [ 'MANIFEST', '.pyc' ]
-    dirs2del = [ './build', './dist', './tests/logs' ]
-    dirs2ign = [ './.git' ]
+    suffixes2del = ['MANIFEST', '.pyc']
+    dirs2del = ['./build', './dist', './tests/logs']
+    dirs2ign = ['./.git']
     # End config.
     doomed = set()
     # Change to base dir.
@@ -104,23 +105,23 @@ class CleanCommand(Command):
             log.warn('unable to remove "%s"', os.path.normpath(accused))
 
 setup(
-  cmdclass = {'test': TestCommand,
-              'dist_clean': CleanCommand
-             },
-  name = 'misspellings',
-  version = '1.2',
-  url = 'http://github.org/lyda/misspell-check',
-  author = 'Kevin Lyda',
-  author_email = 'kevin@ie.suberic.net',
-  description = 'A tool to detect misspellings',
-  long_description = open('README').read(),
-  py_modules = ['misspellings_lib'],
-  scripts = ['misspellings', ],
-  keywords = 'check code spelling spellcheck',
-  license = 'GNU General Public License v3',
-  platforms = ['POSIX'],
+  cmdclass={'test': TestCommand,
+            'dist_clean': CleanCommand
+           },
+  name='misspellings',
+  version='1.2',
+  url='http://github.org/lyda/misspell-check',
+  author='Kevin Lyda',
+  author_email='kevin@ie.suberic.net',
+  description='A tool to detect misspellings',
+  long_description=open('README').read(),
+  py_modules=['misspellings_lib'],
+  scripts=['misspellings', ],
+  keywords='check code spelling spellcheck',
+  license='GNU General Public License v3',
+  platforms=['POSIX'],
   # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
-  classifiers = ['Development Status :: 5 - Production/Stable',
+  classifiers=['Development Status :: 5 - Production/Stable',
                  'Environment :: Console',
                  'License :: OSI Approved :: GNU General Public License v3',
                  'Operating System :: OS Independent',
