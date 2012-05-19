@@ -57,10 +57,10 @@ class MisspellingsTestCase(unittest.TestCase):
     errors, results = ms.check()
     self.assertEquals(len(errors), 1)
 
-  def testMissingFile(self):
+  def testMissingFileWithMultipleFiles(self):
     ms = misspellings.Misspellings(files=[
       os.path.join(BASE_PATH, 'missing_source_%d.c' % i)
-      for i in xrange(10)])
+      for i in range(10)])
     errors, results = ms.check()
     self.assertEquals(len(errors), 10)
     self.assertEquals(len(results), 0)

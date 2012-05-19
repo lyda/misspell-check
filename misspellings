@@ -8,16 +8,16 @@ sys.path.insert(0, os.path.join(BASE_PATH, '..'))
 import misspellings_lib as misspellings
 
 def usage(msg=None):
-  print 'USAGE: misspellings [-f file] [files]'
-  print 'Checks files for common spelling mistakes.'
-  print '  -f file: File containing list of files to check.'
-  print '  -m file: File containing list of misspelled words & corrections.'
-  print '  -d     : Dump the list of misspelled words.'
-  print '  -i     : Interactively fix the file.'
-  print '  -s     : Create a shell script to interactively correct the file.'
-  print '  files: Zero or more files to check.'
+  print('USAGE: misspellings [-f file] [files]')
+  print('Checks files for common spelling mistakes.')
+  print('  -f file: File containing list of files to check.')
+  print('  -m file: File containing list of misspelled words & corrections.')
+  print('  -d     : Dump the list of misspelled words.')
+  print('  -i     : Interactively fix the file.')
+  print('  -s     : Create a shell script to interactively correct the file.')
+  print('  files: Zero or more files to check.')
   if msg is not None:
-    print 'ERROR: %s' % msg
+    print('ERROR: %s' % msg)
     sys.exit(1)
   sys.exit(0)
 
@@ -29,9 +29,9 @@ def print_file_context(fn, target_line_num, context=5):
     for line in f:
       if (line_num > start_line) and (line_num < end_line):
         if line_num == target_line_num:
-          print "+%5d %s" % (line_num, line),
+          sys.stdout.write("+%5d %s" % (line_num, line))
         else:
-          print " %5d %s" % (line_num, line),
+          sys.stdout.write(" %5d %s" % (line_num, line))
       line_num += 1
 
 def cmp_rev_line(a, b):
@@ -43,7 +43,7 @@ def cmp_rev_line(a, b):
 if __name__ == '__main__':
   try:
     flags, files = getopt.getopt(sys.argv[1:], 'f:m:dhisv')
-  except getopt.GetoptError, e:
+  except getopt.GetoptError as e:
     usage(e)
   dump_ms = False
   ms_file = None
@@ -58,7 +58,7 @@ if __name__ == '__main__':
       else:
         try:
           f = open(option, 'r')
-        except IOError, e:
+        except IOError as e:
           usage(e)
       for line in f:
         files.append(line.strip())
@@ -71,28 +71,28 @@ if __name__ == '__main__':
     elif flag == '-s':
       script_output = True
     elif flag == '-v':
-      print 'Version 1.0'
+      print('Version 1.0')
       sys.exit(0)
     else:
       usage('Unknown option "%s"' % flag)
   ms = misspellings.Misspellings(files=files, misspelling_file=ms_file)
   if dump_ms:
     for w, c in ms.dumpMisspellingList():
-      print '%s %s' % (w, c)
+      print('%s %s' % (w, c))
   errors, results = ms.check()
   if not interactive:
     if not script_output:
       for res in results:
-        print '%s[%d]: %s -> %s' % (res[0], res[1], res[2], ','.join(
-          ['"%s"' % w for w in ms.suggestions(res[2])]))
+        print('%s[%d]: %s -> %s' % (res[0], res[1], res[2], ','.join(
+          ['"%s"' % w for w in ms.suggestions(res[2])])))
       for err in errors:
-        print 'ERROR: %s' % err
+        print('ERROR: %s' % err)
     else:
-      print 'Not implemented yet.'
+      print('Not implemented yet.')
   else:
-    print 'Not implemented yet.'
+    print('Not implemented yet.')
     results.sort(cmp=cmp_rev_line)
     for res in results:
       print_file_context(res[0], res[1])
-      print '%s -> "%s"' % (res[2], ','.join(
-        ['"%s"' % w for w in ms.suggestions(res[2])]))
+      print('%s -> "%s"' % (res[2], ','.join(
+        ['"%s"' % w for w in ms.suggestions(res[2])])))

@@ -56,7 +56,7 @@ class Misspellings(object):
               if word in self._misspelling_dict:
                 results.append([fn, line_ct, word])
             line_ct += 1
-      except IOError, e:
+      except IOError as e:
         errors.append('%s' % e)
     return errors, results
 
@@ -73,7 +73,7 @@ class Misspellings(object):
 
   def dumpMisspellingList(self):
     results = []
-    for bad_word in sorted(self._misspelling_dict.iterkeys()):
+    for bad_word in sorted(self._misspelling_dict.keys()):
       for correction in self._misspelling_dict[bad_word]:
         results.append([bad_word, correction])
     return results
