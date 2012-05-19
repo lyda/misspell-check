@@ -104,19 +104,19 @@ class CleanCommand(Command):
             log.warn('unable to remove "%s"', os.path.normpath(accused))
 
 setup(
-  cmdclass={'test': TestCommand,
-            'dist_clean': CleanCommand
-           },
-  name = "misspellings",
-  version = "1.1",
+  cmdclass = {'test': TestCommand,
+              'dist_clean': CleanCommand
+             },
+  name = 'misspellings',
+  version = '1.2',
   url = 'http://github.org/lyda/misspell-check',
   author = 'Kevin Lyda',
   author_email = 'kevin@ie.suberic.net',
-  description = "A tool to detect misspellings",
-  long_description=open('README').read(),
+  description = 'A tool to detect misspellings',
+  long_description = open('README').read(),
   py_modules = ['misspellings_lib'],
   scripts = ['misspellings', ],
-  keywords='check code spelling spellcheck',
+  keywords = 'check code spelling spellcheck',
   license = 'GNU General Public License v3',
   platforms = ['POSIX'],
   # See http://pypi.python.org/pypi?%3Aaction=list_classifiers

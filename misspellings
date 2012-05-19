@@ -71,7 +71,7 @@ if __name__ == '__main__':
     elif flag == '-s':
       script_output = True
     elif flag == '-v':
-      print('Version 1.0')
+      print('Version 1.2')
       sys.exit(0)
     else:
       usage('Unknown option "%s"' % flag)
