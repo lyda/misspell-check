@@ -20,8 +20,8 @@ frequently used in perl tests for instance).
 To try it out, merely run the following (using the coreutils
 source tree as an example)::
 
-    git clone git://git.sv.gnu.org/coreutils ../coreutils
-    find ../coreutils -name '*.c' | ./scripts/misspellings -f -
+    $ git clone git://git.sv.gnu.org/coreutils ../coreutils
+    $ find ../coreutils -name '*.c' | misspellings -f -
     ../coreutils/src/cat.c[754]: efficency -> "efficiency"
     ../coreutils/src/comm.c[196]: funtion -> "function"
     ../coreutils/src/expr.c[21]: seperate -> "separate"
