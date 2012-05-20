@@ -32,15 +32,16 @@ def cmp_rev_line(a, b):
 def main():
   parser = optparse.OptionParser(
       usage='Usage: misspellings [-f file_list] [files]',
+      description='Checks files for common spelling mistakes.',
       epilog='  files: Zero or more files to check.',
       add_help_option=False)
   parser.add_option('-v', '--version', action='store_true',
                     help='Show the version number and exit.')
   parser.add_option('-h', '--help', action='help',
                     help='Show this help message and exit.')
-  parser.add_option('-f', dest='file_list',
+  parser.add_option('-f', dest='file_list', metavar='file',
                     help='File containing list of files to check.')
-  parser.add_option('-m', dest='ms_file',
+  parser.add_option('-m', dest='ms_file', metavar='file',
                     help='File containing list of misspelled words &'
                          ' corrections.')
   parser.add_option('-d', dest='dump_ms', action='store_true',
