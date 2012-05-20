@@ -20,14 +20,14 @@ frequently used in perl tests for instance).
 To try it out, merely run the following (using the coreutils
 source tree as an example)::
 
-    $ git clone git://git.sv.gnu.org/coreutils coreutils
+    $ git clone git://git.sv.gnu.org/coreutils -b v8.10 coreutils
     $ find coreutils -name '*.c' | misspellings -f -
     coreutils/src/cat.c[754]: efficency -> "efficiency"
-    coreutils/src/comm.c[196]: funtion -> "function"
+    coreutils/src/comm.c[198]: funtion -> "function"
     coreutils/src/expr.c[21]: seperate -> "separate"
-    coreutils/src/pr.c[1416]: accomodate -> "accommodate"
+    coreutils/src/pr.c[1417]: accomodate -> "accommodate"
     coreutils/src/tac.c[342]: unneccessary -> "unnecessary"
-    coreutils/src/test.c[97]: supressed -> "suppressed"
+    coreutils/src/test.c[91]: supressed -> "suppressed"
 
 CREDITS
 =======
