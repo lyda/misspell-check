@@ -114,7 +114,7 @@ setup(
   author='Kevin Lyda',
   author_email='kevin@ie.suberic.net',
   description='A tool to detect misspellings',
-  long_description=open('README').read(),
+  long_description=open('README.rst').read(),
   py_modules=['misspellings_lib'],
   scripts=['misspellings', ],
   keywords='check code spelling spellcheck',

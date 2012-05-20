@@ -85,7 +85,9 @@ class UtilityFunctionTestCase(unittest.TestCase):
   def testSameCase(self):
     self.assertEqual('Apple', misspellings.same_case(source='Apple',
                                                      destination='apple'))
-    self.assertEqual('apple', misspellings.same_case(source='apple',
+
+    # Do not make lowercase as "Apple" may be the first word in a sentence.
+    self.assertEqual('Apple', misspellings.same_case(source='apple',
                                                      destination='Apple'))
 
   def testSameCaseWithEmptyDestination(self):
