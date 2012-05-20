@@ -126,7 +126,7 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stdout=subprocess.PIPE,
                          stdin=subprocess.PIPE)
     (output, error_output) = p.communicate(
-        input='\n')
+        input='\n'.encode('utf8'))
     # input='\n'.encode('utf8'))
     self.assertEqual(error_output.decode('utf8'), '')
     self.assertIn('withdrawl', output.decode('utf8'))
