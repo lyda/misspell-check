@@ -50,7 +50,7 @@ class CleanCommand(Command):
 
   def run(self):
     # Configure for this project.
-    suffixes2del = ['MANIFEST', '.pyc']
+    suffixes2del = ['MANIFEST', '.pyc', '.test_out']
     dirs2del = ['./build', './dist', './tests/logs']
     dirs2ign = ['./.git']
     # End config.
@@ -109,7 +109,7 @@ setup(
             'dist_clean': CleanCommand
            },
   name='misspellings',
-  version='1.2',
+  version='1.3',
   url='https://github.com/lyda/misspell-check',
   author='Kevin Lyda',
   author_email='kevin@ie.suberic.net',

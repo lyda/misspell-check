@@ -1,9 +1,10 @@
 MANIFEST
 build/
 dist/
+htmlcov/
 tests/logs
+*.test_out
 *.pyc
 .*.swp
 .tox
 .coverage
-htmlcov/

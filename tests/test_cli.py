@@ -22,7 +22,7 @@ class MisspellingsCLITestCase(unittest.TestCase):
     -f file: File containing list of files to check.
     -m file: File containing list of misspelled words & corrections.
     -d     : Dump the list of misspelled words.
-    -s     : Create a shell script to interactively correct the file.
+    -s file: Create a shell script to interactively correct the file.
     files: Zero or more files to check.
   """
 
@@ -103,6 +103,36 @@ class MisspellingsCLITestCase(unittest.TestCase):
     self.assertEqual(error_output.decode('utf8'), '')
     self.assertEqual(len(output.decode('utf8').split('\n')), 3)
     self.assertEqual(p.returncode, 0)
+
+  def testBadFlagS(self):
+    p = subprocess.Popen([CLI, '-s', 'various_spellings.c'],
+                         cwd=BASE_PATH,
+                         stderr=subprocess.PIPE,
+                         stdout=subprocess.PIPE)
+    (output, error_output) = p.communicate()
+    self.assertIn('must not exist', error_output.decode('utf8'))
+    self.assertEqual(output.decode('utf8'), '')
+    self.assertEqual(p.returncode, 2)
+
+  def testGoodFlagS(self):
+    test_out = os.path.join(BASE_PATH, 'various_spellings.test_out')
+    good_out = os.path.join(BASE_PATH, 'various_spellings.good_out')
+    if os.path.exists(test_out):
+      os.unlink(test_out)
+    p = subprocess.Popen([CLI, '-s', test_out,
+                         'various_spellings.c'],
+                         cwd=BASE_PATH,
+                         stderr=subprocess.PIPE,
+                         stdout=subprocess.PIPE,
+                         stdin=subprocess.PIPE)
+    (output, error_output) = p.communicate(
+        input='\n')
+    # input='\n'.encode('utf8'))
+    self.assertEqual(error_output.decode('utf8'), '')
+    self.assertIn('withdrawl', output.decode('utf8'))
+    self.assertEqual(p.returncode, 0)
+    self.assertListEqual(open(test_out, 'r').readlines(),
+                         open(good_out, 'r').readlines())
 
   def testStandardIn(self):
     p = subprocess.Popen([CLI, '-f', '-'],

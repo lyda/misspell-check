@@ -24,7 +24,7 @@ source tree as an example):
 CREDITS
 
 Kevin Lyda: initial shell goo and python version. https://github.com/lyda
-myint: Support for python 3 and some initial support for utf8.
+myint: Better python idioms and style. Mixed case support.
        https://github.com/myint
 Maciej Blizinski: potential use in opencsw pushed move to python.
                   https://github.com/automatthias
