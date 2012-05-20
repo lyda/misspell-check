@@ -77,8 +77,6 @@ class MisspellingsTestCase(unittest.TestCase):
     ms = misspellings.Misspellings(files=[
       os.path.join(BASE_PATH, 'various_spellings.c')])
     errors, results = ms.check()
-    print(errors)
-    print(results)
     self.assertEqual(len(errors), 0)
     self.assertEqual(len(results), 5)
 
