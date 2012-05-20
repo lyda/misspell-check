@@ -73,5 +73,15 @@ class MisspellingsTestCase(unittest.TestCase):
     self.assertEqual(len(errors), 0)
     self.assertEqual(len(results), 9)
 
+  def testMoreComplexFile(self):
+    ms = misspellings.Misspellings(files=[
+      os.path.join(BASE_PATH, 'various_spellings.c')])
+    errors, results = ms.check()
+    print(errors)
+    print(results)
+    self.assertEqual(len(errors), 0)
+    self.assertEqual(len(results), 5)
+
+
 if __name__ == '__main__':
   unittest.main()

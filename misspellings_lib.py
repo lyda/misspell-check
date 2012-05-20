@@ -1,6 +1,14 @@
 from collections import defaultdict
 
 
+def same_case(source, destination):
+  """Return destination with same case as source."""
+  if source[:1].isupper():
+    return destination[:1].upper() + destination[1:]
+  else:
+    return destination[:1].lower() + destination[1:]
+
+
 class Misspellings(object):
   """Detects misspelled words in files."""
 
@@ -54,8 +62,9 @@ class Misspellings(object):
         with open(fn, 'r') as f:
           line_ct = 1
           for line in f:
-            for word in line.replace('\t', ' ').split(' '):
-              if word in self._misspelling_dict:
+            for word in line.split():
+              if (word in self._misspelling_dict or
+                  word.lower() in self._misspelling_dict):
                 results.append([fn, line_ct, word])
             line_ct += 1
       except IOError as e:
@@ -71,7 +80,12 @@ class Misspellings(object):
     Returns:
       List of zero or more suggested replacements for word.
     """
-    return self._misspelling_dict.get(word, [])
+    if word:
+      suggestions = set(self._misspelling_dict.get(word, [])).union(
+          set(self._misspelling_dict.get(word.lower(), [])))
+      return [same_case(source=word, destination=w) for w in suggestions]
+    else:
+      return None
 
   def dumpMisspellingList(self):
     results = []
