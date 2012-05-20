@@ -12,8 +12,10 @@ from distutils.core import setup
 from distutils.core import Command
 if sys.version_info < (2, 7):
   import unittest2 as unittest
+  required_packages = ['unittest2']
 else:
   import unittest
+  required_packages = []
 
 BASE_DIR = os.path.dirname(globals().get('__file__', os.getcwd()))
 
@@ -118,6 +120,7 @@ setup(
   py_modules=['misspellings_lib'],
   scripts=['misspellings', ],
   keywords='check code spelling spellcheck',
+  requires=required_packages,
   license='GNU General Public License v3',
   platforms=['POSIX'],
   # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
