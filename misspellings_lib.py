@@ -1,5 +1,9 @@
+from collections import defaultdict
+
+
 class Misspellings(object):
   """Detects misspelled words in files."""
+
   def __init__(self, files=None, misspelling_file=None):
     """Initialises an Misspellings instance.
 
@@ -13,11 +17,11 @@ class Misspellings(object):
       ValueError: Raised if misspelling_file isn't correctly formatted.
     """
     if misspelling_file:
-      self._misspelling_dict = {}
+      self._misspelling_dict = defaultdict(list)
       with open(misspelling_file, 'r') as f:
         for line in f:
           bad_word, correction = line.strip().split(' ', 1)
-          self._misspelling_dict.setdefault(bad_word, []).append(correction)
+          self._misspelling_dict[bad_word].append(correction)
 
     self._files = []
     if files:
