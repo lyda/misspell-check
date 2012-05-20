@@ -29,6 +29,19 @@ def cmp_rev_line(a, b):
   return file_cmp
 
 
+def parse_file_list(filename):
+  f = sys.stdin
+  try:
+    if filename != '-':
+      f = open(filename, 'r')
+    return [line.strip() for line in f]
+  except IOError:
+    raise
+  finally:
+    if f != sys.stdin:
+      f.close()
+
+
 def main():
   parser = optparse.OptionParser(
       usage='Usage: misspellings [-f file_list] [files]',
@@ -57,18 +70,11 @@ def main():
     print('Version 1.2')
     return 0
   elif opts.file_list:
-    if opts.file_list == '-':
-      f = sys.stdin
-    else:
-      try:
-        f = open(opts.file_list, 'r')
-      except IOError as e:
-        print('ERROR: %s' % e)
-        return 1
-    for line in f:
-      files.append(line.strip())
-    if f != sys.stdin:
-      f.close()
+    try:
+      files += parse_file_list(opts.file_list)
+    except IOError as e:
+      print('ERROR: %s' % e)
+      return 1
 
   ms = misspellings.Misspellings(files=files,
                                  misspelling_file=opts.ms_file)
