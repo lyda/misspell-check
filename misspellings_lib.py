@@ -1,4 +1,5 @@
 from collections import defaultdict
+import os
 
 
 def same_case(source, destination):
@@ -61,17 +62,18 @@ class Misspellings(object):
     errors = []
     results = []
     for fn in self._files:
-      try:
-        with open(fn, 'r') as f:
-          line_ct = 1
-          for line in f:
-            for word in line.split():
-              if (word in self._misspelling_dict or
-                  word.lower() in self._misspelling_dict):
-                results.append([fn, line_ct, word])
-            line_ct += 1
-      except IOError as e:
-        errors.append('%s' % e)
+      if not os.path.isdir(fn):
+        try:
+          with open(fn, 'r') as f:
+            line_ct = 1
+            for line in f:
+              for word in line.split():
+                if (word in self._misspelling_dict or
+                    word.lower() in self._misspelling_dict):
+                  results.append([fn, line_ct, word])
+              line_ct += 1
+        except IOError as e:
+          errors.append('%s' % e)
     return errors, results
 
   def suggestions(self, word):

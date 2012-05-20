@@ -73,7 +73,7 @@ def main():
     try:
       files += parse_file_list(opts.file_list)
     except IOError as e:
-      print('ERROR: %s' % e)
+      print('ERROR1: %s' % e)
       return 1
 
   ms = misspellings.Misspellings(files=files,
