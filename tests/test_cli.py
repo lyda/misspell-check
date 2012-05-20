@@ -37,9 +37,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          cwd=BASE_PATH,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
-    p.wait()
-    self.assertEqual(p.stderr.read().decode('utf8'), '')
-    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 10)
+    (output, error_output) = p.communicate()
+    self.assertEqual(error_output.decode('utf8'), '')
+    self.assertEqual(len(output.decode('utf8').split('\n')), 10)
     self.assertEqual(p.returncode, 0)
 
   def testBadFile(self):
@@ -47,9 +47,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          cwd=BASE_PATH,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
-    p.wait()
-    self.assertEqual(p.stderr.read().decode('utf8'), '')
-    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 2)
+    (output, error_output) = p.communicate()
+    self.assertEqual(error_output.decode('utf8'), '')
+    self.assertEqual(len(output.decode('utf8').split('\n')), 2)
     self.assertEqual(p.returncode, 0)
 
   def testGoodFlagF(self):
@@ -57,9 +57,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          cwd=BASE_PATH,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
-    p.wait()
-    self.assertEqual(p.stderr.read().decode('utf8'), '')
-    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 10)
+    (output, error_output) = p.communicate()
+    self.assertEqual(error_output.decode('utf8'), '')
+    self.assertEqual(len(output.decode('utf8').split('\n')), 10)
     self.assertEqual(p.returncode, 0)
 
   def testBadFlagF(self):
@@ -67,9 +67,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          cwd=BASE_PATH,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
-    p.wait()
-    self.assertEqual(p.stderr.read().decode('utf8'), '')
-    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 2)
+    (output, error_output) = p.communicate()
+    self.assertEqual(error_output.decode('utf8'), '')
+    self.assertEqual(len(output.decode('utf8').split('\n')), 2)
     self.assertEqual(p.returncode, 0)
 
   def testGoodFlagD(self):
@@ -79,9 +79,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          shell=True,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
-    p.wait()
-    self.assertEqual(p.stderr.read().decode('utf8'), '')
-    self.assertEqual(p.stdout.read().decode('utf8'), '')
+    (output, error_output) = p.communicate()
+    self.assertEqual(error_output.decode('utf8'), '')
+    self.assertEqual(output.decode('utf8'), '')
     self.assertEqual(p.returncode, 0)
 
   def testBadFlagM(self):
@@ -89,9 +89,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          cwd=BASE_PATH,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
-    p.wait()
-    self.assertIn('ValueError', p.stderr.read().decode('utf8'))
-    self.assertEqual(p.stdout.read().decode('utf8'), '')
+    (output, error_output) = p.communicate()
+    self.assertIn('ValueError', error_output.decode('utf8'))
+    self.assertEqual(output.decode('utf8'), '')
     self.assertEqual(p.returncode, 1)
 
   def testGoodFlagM(self):
@@ -99,9 +99,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          cwd=BASE_PATH,
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
-    p.wait()
-    self.assertEqual(p.stderr.read().decode('utf8'), '')
-    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 3)
+    (output, error_output) = p.communicate()
+    self.assertEqual(error_output.decode('utf8'), '')
+    self.assertEqual(len(output.decode('utf8').split('\n')), 3)
     self.assertEqual(p.returncode, 0)
 
   def testStandardIn(self):

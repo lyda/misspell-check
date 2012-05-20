@@ -5,3 +5,5 @@ tests/logs
 *.pyc
 .*.swp
 .tox
+.coverage
+htmlcov/

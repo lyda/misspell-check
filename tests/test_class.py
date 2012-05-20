@@ -73,5 +73,33 @@ class MisspellingsTestCase(unittest.TestCase):
     self.assertEqual(len(errors), 0)
     self.assertEqual(len(results), 9)
 
+  def testMoreComplexFile(self):
+    ms = misspellings.Misspellings(files=[
+      os.path.join(BASE_PATH, 'various_spellings.c')])
+    errors, results = ms.check()
+    self.assertEqual(len(errors), 0)
+    self.assertEqual(len(results), 5)
+
+
+class UtilityFunctionTestCase(unittest.TestCase):
+  def testSameCase(self):
+    self.assertEqual('Apple', misspellings.same_case(source='Apple',
+                                                     destination='apple'))
+    self.assertEqual('apple', misspellings.same_case(source='apple',
+                                                     destination='Apple'))
+
+  def testSameCaseWithEmptyDestination(self):
+    self.assertEqual('', misspellings.same_case(source='apple',
+                                                destination=''))
+    self.assertEqual('', misspellings.same_case(source='Apple',
+                                                destination=''))
+
+  def testSameCaseWithEmptySource(self):
+    self.assertEqual('apple', misspellings.same_case(source='',
+                                                     destination='apple'))
+    self.assertEqual('Apple', misspellings.same_case(source='',
+                                                     destination='Apple'))
+
+
 if __name__ == '__main__':
   unittest.main()
