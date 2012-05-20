@@ -19,7 +19,6 @@ frequently used in perl tests for instance).
 
 Example
 =======
-
 To try it out, merely run the following (using the coreutils
 source tree as an example)::
 
@@ -34,7 +33,6 @@ source tree as an example)::
 
 Credits
 =======
-
 - `Kevin Lyda`_: Initial shell goo and python version.
 - `myint`_: Support for python 3 and some initial support for utf8.
 - `Maciej Blizinski`_: Potential use in opencsw pushed move to python.
