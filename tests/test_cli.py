@@ -104,5 +104,17 @@ class MisspellingsCLITestCase(unittest.TestCase):
     self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 3)
     self.assertEquals(p.returncode, 0)
 
+  def testStandardIn(self):
+    p = subprocess.Popen([CLI, '-f', '-'],
+                         cwd=BASE_PATH,
+                         stderr=subprocess.PIPE,
+                         stdout=subprocess.PIPE,
+                         stdin=subprocess.PIPE)
+    (output, error_output) = p.communicate(
+        input='nine_mispellings.c\n'.encode('utf8'))
+    self.assertEquals(error_output.decode('utf8'), '')
+    self.assertEquals(len(output.decode('utf8').split('\n')), 10)
+    self.assertEquals(p.returncode, 0)
+
 if __name__ == '__main__':
   unittest.main()
