@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# For Python 2.5
+from __future__ import with_statement
+
 import optparse
 import os
 import sys
@@ -140,8 +143,8 @@ def main():
   elif opts.file_list:
     try:
       files += parse_file_list(opts.file_list)
-    except IOError as e:
-      print('ERROR: %s' % e)
+    except IOError:
+      print('ERROR: %s' % sys.exc_info()[1])
       return 1
 
   ms = misspellings.Misspellings(files=files,

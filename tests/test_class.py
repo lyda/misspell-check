@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# For Python 2.5
+from __future__ import with_statement
+
 import os
 import sys
 import misspellings_lib as misspellings
