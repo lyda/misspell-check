@@ -3,10 +3,13 @@ from collections import defaultdict
 
 def same_case(source, destination):
   """Return destination with same case as source."""
-  if source[:1].isupper():
-    return destination[:1].upper() + destination[1:]
+  if source:
+    if source[:1].isupper():
+      return destination[:1].upper() + destination[1:]
+    else:
+      return destination[:1].lower() + destination[1:]
   else:
-    return destination[:1].lower() + destination[1:]
+    return destination
 
 
 class Misspellings(object):
@@ -80,12 +83,9 @@ class Misspellings(object):
     Returns:
       List of zero or more suggested replacements for word.
     """
-    if word:
-      suggestions = set(self._misspelling_dict.get(word, [])).union(
-          set(self._misspelling_dict.get(word.lower(), [])))
-      return [same_case(source=word, destination=w) for w in suggestions]
-    else:
-      return None
+    suggestions = set(self._misspelling_dict.get(word, [])).union(
+        set(self._misspelling_dict.get(word.lower(), [])))
+    return [same_case(source=word, destination=w) for w in suggestions]
 
   def dumpMisspellingList(self):
     results = []

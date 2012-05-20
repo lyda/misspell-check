@@ -88,6 +88,18 @@ class UtilityFunctionTestCase(unittest.TestCase):
     self.assertEqual('apple', misspellings.same_case(source='apple',
                                                      destination='Apple'))
 
+  def testSameCaseWithEmptyDestination(self):
+    self.assertEqual('', misspellings.same_case(source='apple',
+                                                destination=''))
+    self.assertEqual('', misspellings.same_case(source='Apple',
+                                                destination=''))
+
+  def testSameCaseWithEmptySource(self):
+    self.assertEqual('apple', misspellings.same_case(source='',
+                                                     destination='apple'))
+    self.assertEqual('Apple', misspellings.same_case(source='',
+                                                     destination='Apple'))
+
 
 if __name__ == '__main__':
   unittest.main()
