@@ -4,7 +4,7 @@ python:
     - "2.7"
     - "3.2"
 install:
-    - pip install $(python setup.py --requires)
+    - pip install --use-mirrors -r requirements-$(TRAVIS_PYTHON_VERSION).txt
     - python setup.py install
 script:
     - python setup.py test
