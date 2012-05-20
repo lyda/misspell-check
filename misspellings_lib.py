@@ -1,5 +1,9 @@
+# For Python 2.5
+from __future__ import with_statement
+
 from collections import defaultdict
 import os
+import sys
 
 
 def same_case(source, destination):
@@ -69,8 +73,8 @@ class Misspellings(object):
                     word.lower() in self._misspelling_dict):
                   results.append([fn, line_ct, word])
               line_ct += 1
-        except IOError as e:
-          errors.append('%s' % e)
+        except IOError:
+          errors.append('%s' % sys.exc_info()[1])
     return errors, results
 
   def suggestions(self, word):
