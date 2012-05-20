@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import os
 import sys
@@ -34,7 +34,7 @@ class MisspellingsTestCase(unittest.TestCase):
     with open(misspelling_file) as msf:
       for unused_line in msf:
         lines += 1
-    self.assertEquals(len(ms.dumpMisspellingList()), lines)
+    self.assertEqual(len(ms.dumpMisspellingList()), lines)
 
   def testExampleSameAsDefault(self):
     dms = misspellings.Misspellings()
@@ -49,29 +49,29 @@ class MisspellingsTestCase(unittest.TestCase):
       for w, c in msl:
         f.write('%s %s\n' % (w, c))
       f.close()
-    self.assertEquals(default_msl, example_msl,
+    self.assertEqual(default_msl, example_msl,
         'See logs in "%s" for dump of the list.' % LOG_PATH)
 
   def testMissingFile(self):
     ms = misspellings.Misspellings(
         files=os.path.join(BASE_PATH, 'missing_source.c'))
     errors, results = ms.check()
-    self.assertEquals(len(errors), 1)
+    self.assertEqual(len(errors), 1)
 
   def testMissingFileWithMultipleFiles(self):
     ms = misspellings.Misspellings(files=[
       os.path.join(BASE_PATH, 'missing_source_%d.c' % i)
       for i in range(10)])
     errors, results = ms.check()
-    self.assertEquals(len(errors), 10)
-    self.assertEquals(len(results), 0)
+    self.assertEqual(len(errors), 10)
+    self.assertEqual(len(results), 0)
 
   def testGoodFile(self):
     ms = misspellings.Misspellings(files=[
       os.path.join(BASE_PATH, 'nine_mispellings.c')])
     errors, results = ms.check()
-    self.assertEquals(len(errors), 0)
-    self.assertEquals(len(results), 9)
+    self.assertEqual(len(errors), 0)
+    self.assertEqual(len(results), 9)
 
 if __name__ == '__main__':
   unittest.main()

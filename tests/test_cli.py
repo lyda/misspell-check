@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import os
 import subprocess
@@ -38,9 +38,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read().decode('utf8'), '')
-    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 10)
-    self.assertEquals(p.returncode, 0)
+    self.assertEqual(p.stderr.read().decode('utf8'), '')
+    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 10)
+    self.assertEqual(p.returncode, 0)
 
   def testBadFile(self):
     p = subprocess.Popen([CLI, 'missing.c'],
@@ -48,9 +48,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read().decode('utf8'), '')
-    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 2)
-    self.assertEquals(p.returncode, 0)
+    self.assertEqual(p.stderr.read().decode('utf8'), '')
+    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 2)
+    self.assertEqual(p.returncode, 0)
 
   def testGoodFlagF(self):
     p = subprocess.Popen([CLI, '-f', 'good_file_list'],
@@ -58,9 +58,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read().decode('utf8'), '')
-    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 10)
-    self.assertEquals(p.returncode, 0)
+    self.assertEqual(p.stderr.read().decode('utf8'), '')
+    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 10)
+    self.assertEqual(p.returncode, 0)
 
   def testBadFlagF(self):
     p = subprocess.Popen([CLI, '-f', 'broken_file_list'],
@@ -68,9 +68,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read().decode('utf8'), '')
-    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 2)
-    self.assertEquals(p.returncode, 0)
+    self.assertEqual(p.stderr.read().decode('utf8'), '')
+    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 2)
+    self.assertEqual(p.returncode, 0)
 
   def testGoodFlagD(self):
     p = subprocess.Popen('( "%s" -d; cat "%s" ) |sort |uniq -u |tail -1' %
@@ -80,9 +80,9 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read().decode('utf8'), '')
-    self.assertEquals(p.stdout.read().decode('utf8'), '')
-    self.assertEquals(p.returncode, 0)
+    self.assertEqual(p.stderr.read().decode('utf8'), '')
+    self.assertEqual(p.stdout.read().decode('utf8'), '')
+    self.assertEqual(p.returncode, 0)
 
   def testBadFlagM(self):
     p = subprocess.Popen([CLI, '-d', '-m', 'broken_msl.txt'],
@@ -91,8 +91,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stdout=subprocess.PIPE)
     p.wait()
     self.assertIn('ValueError', p.stderr.read().decode('utf8'))
-    self.assertEquals(p.stdout.read().decode('utf8'), '')
-    self.assertEquals(p.returncode, 1)
+    self.assertEqual(p.stdout.read().decode('utf8'), '')
+    self.assertEqual(p.returncode, 1)
 
   def testGoodFlagM(self):
     p = subprocess.Popen([CLI, '-d', '-m', 'small_msl.txt'],
@@ -100,9 +100,21 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     p.wait()
-    self.assertEquals(p.stderr.read().decode('utf8'), '')
-    self.assertEquals(len(p.stdout.read().decode('utf8').split('\n')), 3)
-    self.assertEquals(p.returncode, 0)
+    self.assertEqual(p.stderr.read().decode('utf8'), '')
+    self.assertEqual(len(p.stdout.read().decode('utf8').split('\n')), 3)
+    self.assertEqual(p.returncode, 0)
+
+  def testStandardIn(self):
+    p = subprocess.Popen([CLI, '-f', '-'],
+                         cwd=BASE_PATH,
+                         stderr=subprocess.PIPE,
+                         stdout=subprocess.PIPE,
+                         stdin=subprocess.PIPE)
+    (output, error_output) = p.communicate(
+        input='nine_mispellings.c\n'.encode('utf8'))
+    self.assertEqual(error_output.decode('utf8'), '')
+    self.assertEqual(len(output.decode('utf8').split('\n')), 10)
+    self.assertEqual(p.returncode, 0)
 
 if __name__ == '__main__':
   unittest.main()
