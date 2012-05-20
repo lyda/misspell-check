@@ -110,7 +110,7 @@ setup(
            },
   name='misspellings',
   version='1.2',
-  url='http://github.org/lyda/misspell-check',
+  url='https://github.com/lyda/misspell-check',
   author='Kevin Lyda',
   author_email='kevin@ie.suberic.net',
   description='A tool to detect misspellings',
