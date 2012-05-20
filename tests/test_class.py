@@ -81,5 +81,13 @@ class MisspellingsTestCase(unittest.TestCase):
     self.assertEqual(len(results), 5)
 
 
+class UtilityFunctionTestCase(unittest.TestCase):
+  def testSameCase(self):
+    self.assertEqual('Apple', misspellings.same_case(source='Apple',
+                                                     destination='apple'))
+    self.assertEqual('apple', misspellings.same_case(source='apple',
+                                                     destination='Apple'))
+
+
 if __name__ == '__main__':
   unittest.main()
