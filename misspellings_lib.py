@@ -4,11 +4,8 @@ import os
 
 def same_case(source, destination):
   """Return destination with same case as source."""
-  if source:
-    if source[:1].isupper():
-      return destination[:1].upper() + destination[1:]
-    else:
-      return destination[:1].lower() + destination[1:]
+  if source and source[:1].isupper():
+      return destination.capitalize()
   else:
     return destination
 
