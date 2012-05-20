@@ -32,8 +32,10 @@ source tree as an example)::
 CREDITS
 =======
 
-Kevin Lyda: initial shell goo and python version. https://github.com/lyda
-myint: Support for python 3 and some initial support for utf8.
-       https://github.com/myint
-Maciej Blizinski: potential use in opencsw pushed move to python.
-                  https://github.com/automatthias
+- `Kevin Lyda`_: initial shell goo and python version.
+- `myint`_: Support for python 3 and some initial support for utf8.
+- `Maciej Blizinski`_: potential use in opencsw pushed move to python.
+
+.. _`Kevin Lyda`: https://github.com/lyda
+.. _`myint`: https://github.com/myint
+.. _`Maciej Blizinski`: https://github.com/automatthias
