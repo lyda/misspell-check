@@ -81,7 +81,7 @@ class MisspellingsTestCase(unittest.TestCase):
       os.path.join(BASE_PATH, 'various_spellings.c')])
     errors, results = ms.check()
     self.assertEqual(len(errors), 0)
-    self.assertEqual(len(results), 5)
+    self.assertEqual(len(results), 6)
 
 
 class UtilityFunctionTestCase(unittest.TestCase):

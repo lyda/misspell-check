@@ -11,6 +11,31 @@ sys.path.insert(0, os.path.join(BASE_PATH, '..'))
 import misspellings_lib as misspellings
 
 
+class Suggestions(object):
+  """Class to query user on which correction should be used."""
+  def __init__(self):
+    self.last_suggestions = {}
+
+  def _get_a_line(self, filename, lineno):
+    # Perhaps caching this would be nice, but assuming not an insane
+    # number of misspellings.
+    return open(filename, 'r').readlines()[lineno - 1].rstrip()
+
+  def get_suggestion(self, filename, lineno, word, suggestions):
+    if word not in self.last_suggestions:
+      self.last_suggestions[word] = suggestions[0]
+    line = self._get_a_line(filename, lineno)
+    sys.stdout.write('> %s\nReplace "%s" with one of %s\nChoose [%s]:'
+                     % (line, word, ','.join(suggestions),
+                        self.last_suggestions[word]))
+    suggestion = sys.stdin.readline().strip()
+    if not suggestion:
+      suggestion = self.last_suggestions[word]
+    else:
+      self.last_suggestions[word] = suggestion
+    return suggestion
+
+
 def print_file_context(fn, target_line_num, context=5):
   line_num = 1
   start_line = target_line_num - context
@@ -45,6 +70,49 @@ def parse_file_list(filename):
       f.close()
 
 
+def esc_sed(s):
+  return s.replace('"', '\\"').replace('/', '\\/')
+
+
+def esc_file(s):
+  return s.replace('"', '\\"')
+
+
+# Output routines.
+def output_normal(ms):
+  errors, results = ms.check()
+  for res in results:
+    print('%s[%d]: %s -> %s' % (res[0], res[1], res[2], ','.join(
+      ['"%s"' % w for w in ms.suggestions(res[2])])))
+  for err in errors:
+    print('ERROR: %s' % err)
+
+
+def output_sed_script(ms, parser, opts):
+  errors, results = ms.check()
+  if os.path.exists(opts.script_output):
+    # Emit an error is the file already exists in case the user
+    # forgets to give the file - but does give source files.
+    parser.error('The sed script file "%s" must not exist.'
+                 % opts.script_output)
+  sed_script = open(opts.script_output, 'w')
+  sg = Suggestions()
+  for res in results:
+    suggestions = ms.suggestions(res[2])
+    if len(suggestions) == 1:
+      suggestion = suggestions[0]
+    else:
+      suggestion = sg.get_suggestion(res[0], res[1], res[2], suggestions)
+    if suggestion != res[2]:
+      sed_script.write('sed "%(lc)ds/%(wrd)s/%(rep)s/" "%(f)s" > "%(f)s,"\n'
+                       'mv "%(f)s," "%(f)s"\n'
+                       % {'f': esc_file(res[0]), 'lc': res[1],
+                          'wrd': esc_sed(res[2]), 'rep': esc_sed(suggestion)})
+  for err in errors:
+    print('ERROR: %s' % err)
+  sed_script.close()
+
+
 def main():
   parser = optparse.OptionParser(
       usage='Usage: misspellings [-f file_list] [files]',
@@ -64,13 +132,13 @@ def main():
                     help='Dump the list of misspelled words.')
   parser.add_option('-i', dest='interactive', action='store_true',
                     help='Interactively fix the file.')
-  parser.add_option('-s', dest='script_output', action='store_true',
-                    help='Create a shell script to interactively correct the'
-                         ' file.')
+  parser.add_option('-s', dest='script_output', metavar='file',
+                    help='Create a shell script to interactively correct'
+                         ' the files - script saved to the given file.')
   opts, files = parser.parse_args()
 
   if opts.version:
-    print('Version 1.2')
+    print('Version 1.3')
     return 0
   elif opts.file_list:
     try:
@@ -84,18 +152,13 @@ def main():
   if opts.dump_ms:
     for w, c in ms.dumpMisspellingList():
       print('%s %s' % (w, c))
-  errors, results = ms.check()
   if not opts.interactive:
     if not opts.script_output:
-      for res in results:
-        print('%s[%d]: %s -> %s' % (res[0], res[1], res[2], ','.join(
-          ['"%s"' % w for w in ms.suggestions(res[2])])))
-      for err in errors:
-        print('ERROR: %s' % err)
+      output_normal(ms)
     else:
-      print('Not implemented yet.')
+      output_sed_script(ms, parser, opts)
   else:
-    print('Not implemented yet.')
+    print('Interactive mode not implemented yet.')
     results.sort(cmp=cmp_rev_line)
     for res in results:
       print_file_context(res[0], res[1])

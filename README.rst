@@ -1,8 +1,8 @@
 ============
 misspellings
 ============
-.. image:: https://secure.travis-ci.org/myint/misspell-check.png
-   :target: https://secure.travis-ci.org/myint/misspell-check
+.. image:: https://secure.travis-ci.org/lyda/misspell-check.png
+   :target: https://secure.travis-ci.org/lyda/misspell-check
    :alt: Build status
 
 
@@ -34,7 +34,7 @@ source tree as an example)::
 Credits
 =======
 - `Kevin Lyda`_: Initial shell goo and python version.
-- `myint`_: Support for python 3 and some initial support for utf8.
+- `myint`_: Better python idioms and style. Mixed case support.
 - `Maciej Blizinski`_: Potential use in opencsw pushed move to python.
 
 .. _`Kevin Lyda`: https://github.com/lyda
