@@ -61,12 +61,14 @@ def main():
       f = sys.stdin
     else:
       try:
-        with open(opts.file_list, 'r') as f:
-          for line in f:
-            files.append(line.strip())
+        f = open(opts.file_list, 'r')
       except IOError as e:
         print('ERROR: %s' % e)
         return 1
+    for line in f:
+      files.append(line.strip())
+    if f != sys.stdin:
+      f.close()
 
   ms = misspellings.Misspellings(files=files,
                                  misspelling_file=opts.ms_file)
