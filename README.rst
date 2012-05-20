@@ -17,6 +17,9 @@ The list has been slightly modified to remove some changes that cause
 a number of false positives.  In particular `ok->OK` was removed (ok is
 frequently used in perl tests for instance).
 
+Example
+=======
+
 To try it out, merely run the following (using the coreutils
 source tree as an example)::
 
@@ -29,7 +32,7 @@ source tree as an example)::
     coreutils/src/tac.c[342]: unneccessary -> "unnecessary"
     coreutils/src/test.c[91]: supressed -> "suppressed"
 
-CREDITS
+Credits
 =======
 
 - `Kevin Lyda`_: Initial shell goo and python version.
