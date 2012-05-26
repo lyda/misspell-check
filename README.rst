@@ -9,14 +9,14 @@ Spell checker for code
 ======================
 
 This is a Python library and tool to check for misspelled words in
-source code.  It does this by looking for words from a list of
-common misspellings.  The dictionary it uses to do this is based
+source code. It does this by looking for words from a list of
+common misspellings. The dictionary it uses to do this is based
 on the Wikipedia list of common misspellings.
 
 * http://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings/For_machines
 
 The list has been slightly modified to remove some changes that
-cause a number of false positives.  In particular ``ok->OK`` was
+cause a number of false positives. In particular ``ok->OK`` was
 removed (ok is frequently used in perl tests for instance).
 
 Example
@@ -36,8 +36,8 @@ source tree as an example)::
 Contributions
 =============
 
-Contributions are welcome!  Please add unit tests for new features
-or bug fixes.  To run all the unit tests run ``./setup test``.
+Contributions are welcome! Please add unit tests for new features
+or bug fixes. To run all the unit tests run ``./setup test``.
 
 Unit tests are run on `Travis`_ for all supported python versions.
 
