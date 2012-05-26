@@ -31,6 +31,14 @@ source tree as an example)::
     coreutils/src/tac.c[342]: unneccessary -> "unnecessary"
     coreutils/src/test.c[91]: supressed -> "suppressed"
 
+Contributions
+=============
+
+Contributions are welcome!  Please add unit tests for new features
+or bug fixes.  To run all the unit tests run ``./setup test``.
+
+Unit tests are run on `Travis`_ for all supported python versions.
+
 Credits
 =======
 - `Kevin Lyda`_: Initial shell goo and python version.
@@ -40,3 +48,4 @@ Credits
 .. _`Kevin Lyda`: https://github.com/lyda
 .. _`myint`: https://github.com/myint
 .. _`Maciej Blizinski`: https://github.com/automatthias
+.. _`Travis`: http://travis-ci.org/
