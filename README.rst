@@ -50,4 +50,4 @@ Credits
 .. _`Kevin Lyda`: https://github.com/lyda
 .. _`myint`: https://github.com/myint
 .. _`Maciej Blizinski`: https://github.com/automatthias
-.. _`Travis`: http://travis-ci.org/
+.. _`Travis`: http://travis-ci.org/#!/lyda/misspell-check
