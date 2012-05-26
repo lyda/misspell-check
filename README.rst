@@ -6,16 +6,16 @@ misspellings
    :alt: Build status
 
 
-This is a Python library and tool to check for misspelled
-words in source code.  It does this by looking for words from
-a list of common misspellings.  The dictionary it uses to do this
-is based on the Wikipedia list of common misspellings.
+This is a Python library and tool to check for misspelled words in
+source code.  It does this by looking for words from a list of
+common misspellings.  The dictionary it uses to do this is based
+on the Wikipedia list of common misspellings.
 
 * http://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings/For_machines
 
-The list has been slightly modified to remove some changes that cause
-a number of false positives.  In particular `ok->OK` was removed (ok is
-frequently used in perl tests for instance).
+The list has been slightly modified to remove some changes that
+cause a number of false positives.  In particular ``ok->OK`` was
+removed (ok is frequently used in perl tests for instance).
 
 Example
 =======
