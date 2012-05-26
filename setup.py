@@ -109,7 +109,7 @@ setup(
             'dist_clean': CleanCommand
            },
   name='misspellings',
-  version='1.3',
+  version='1.4',
   url='https://github.com/lyda/misspell-check',
   author='Kevin Lyda',
   author_email='kevin@ie.suberic.net',

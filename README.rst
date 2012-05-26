@@ -5,6 +5,8 @@ misspellings
    :target: https://secure.travis-ci.org/lyda/misspell-check
    :alt: Build status
 
+Spell checker for code
+======================
 
 This is a Python library and tool to check for misspelled words in
 source code.  It does this by looking for words from a list of
