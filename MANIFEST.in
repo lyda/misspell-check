@@ -2,5 +2,5 @@ include LICENSE README.rst TODO setup.py
 include misspellings
 include misspellings_lib.py
 recursive-include tests *.py *.txt *.c *_list *good_out
+recursive-exclude tests/travis *
 recursive-include utils *
-recursive-exclude utils/travis *
