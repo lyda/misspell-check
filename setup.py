@@ -142,7 +142,6 @@ class InstallCmd(install):
 setup(
   cmdclass={'test': TestCmd,
             'dist_clean': CleanCmd,
-            'distclean': CleanCmd,
             'install': InstallCmd,
            },
   name='misspellings',
