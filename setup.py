@@ -7,7 +7,9 @@ This installs the misspelling command and the misspellings.check module.
 
 import os
 import sys
+from distutils import file_util
 from distutils import log
+from distutils.command.install import install
 from distutils.core import setup
 from distutils.core import Command
 if sys.version_info < (2, 7):
@@ -18,7 +20,7 @@ else:
 BASE_DIR = os.path.dirname(globals().get('__file__', os.getcwd()))
 
 
-class TestCommand(Command):
+class TestCmd(Command):
   description = 'Runs all available tests.'
   user_options = []
 
@@ -38,7 +40,7 @@ class TestCommand(Command):
       sys.exit(1)
 
 
-class CleanCommand(Command):
+class CleanCmd(Command):
   description = 'Remove all generated files.'
   user_options = []
 
@@ -104,9 +106,44 @@ class CleanCommand(Command):
           except:
             log.warn('unable to remove "%s"', os.path.normpath(accused))
 
+class InstallCmd(install):
+  user_options = install.user_options[:]
+  user_options.extend([('manprefix=', None,
+                        'installation prefix for man pages')])
+
+  def initialize_options(self):
+    self.manprefix = None
+    install.initialize_options(self)
+
+  def finalize_options(self):
+    install.finalize_options(self)
+    if self.manprefix is None :
+      self.manprefix = os.path.join(self.install_scripts,
+                                    '..', 'share', 'man')
+
+  def run(self):
+    install.run(self)
+    manpages=['doc/misspellings.1']
+    if self.manprefix:
+      for manpage in manpages:
+        section = manpage.split('/')[-1].split('.')[-1]
+        manpage_file = manpage.split('/')[-1]
+        manpage_dir = os.path.realpath(os.path.join(self.manprefix,
+                                                    'man%s' % section))
+        if not self.dry_run:
+          try:
+            os.makedirs(manpage_dir)
+          except OSError:
+            pass
+        file_util.copy_file(manpage,
+                            os.path.join(manpage_dir, manpage_file),
+                            dry_run=self.dry_run)
+
 setup(
-  cmdclass={'test': TestCommand,
-            'dist_clean': CleanCommand
+  cmdclass={'test': TestCmd,
+            'dist_clean': CleanCmd,
+            'distclean': CleanCmd,
+            'install': InstallCmd,
            },
   name='misspellings',
   version='1.4',

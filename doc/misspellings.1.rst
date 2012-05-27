@@ -50,8 +50,11 @@ If you can come up with a list for a different language, use the
 
 Bugs
 ----
-Quite possibly. Report them via the `issue tracker`_ at the project
-website.
+Quite possibly. Report them via the issue tracker at the project
+website:
+
+https://github.com/lyda/misspell-check/issues
+
 
 See Also
 --------
@@ -66,5 +69,3 @@ Copying
 Copyright (C) 2012 Kevin Lyda.
 Free use of this software is granted under the terms of the Apache
 License.
-
-.. _`issue tracker`: http://code.google.com/p/chkcrontab/issues/list
