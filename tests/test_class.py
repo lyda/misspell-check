@@ -105,6 +105,31 @@ class UtilityFunctionTestCase(unittest.TestCase):
     self.assertEqual('Apple', misspellings.same_case(source='',
                                                      destination='Apple'))
 
+  def testSplitWords(self):
+    self.assertEqual(['one', 'two', 'three'],
+                     misspellings.split_words('one two three'))
+
+  def testSplitWordsWithUnderscores(self):
+    self.assertEqual(['one', 'two', 'three'],
+                     misspellings.split_words('one_two_three'))
+
+    self.assertEqual(['one', 'two', 'three', 'four'],
+                     misspellings.split_words('one_two_three four'))
+
+  def testSplitWordsWithNumbers(self):
+    self.assertEqual(['upper', 'lower'],
+                     misspellings.split_words('upper2lower'))
+
+  def testSplitWordsWithCamelCase(self):
+    self.assertEqual(['one', 'Two', 'Three'],
+                     misspellings.split_words('oneTwoThree'))
+
+    self.assertEqual(['one', 'Two', 'Three', 'four'],
+                     misspellings.split_words('oneTwoThree_four'))
+
+    self.assertEqual(['one', 'Two', 'Three', 'four', 'five'],
+                     misspellings.split_words('oneTwoThree_four five'))
+
 
 if __name__ == '__main__':
   unittest.main()

@@ -14,6 +14,15 @@ def same_case(source, destination):
     return destination
 
 
+def split_words(line):
+  """Return the list of words contained in a line."""
+  import re
+  # Normalize any camel cased words first
+  line = re.sub('([a-z])([A-Z][a-z])', r'\1 \2', line)
+
+  return re.split('[\s_0-9]', line)
+
+
 class Misspellings(object):
   """Detects misspelled words in files."""
 
@@ -68,7 +77,7 @@ class Misspellings(object):
           with open(fn, 'r') as f:
             line_ct = 1
             for line in f:
-              for word in line.split():
+              for word in split_words(line):
                 if (word in self._misspelling_dict or
                     word.lower() in self._misspelling_dict):
                   results.append([fn, line_ct, word])
