@@ -17,7 +17,10 @@ def same_case(source, destination):
 def split_words(line):
   """Return the list of words contained in a line."""
   import re
-  return re.split('[\s_]', line)
+  # Normalize any camel cased words first
+  line = re.sub('([a-z])([A-Z][a-z])', r'\1 \2', line)
+
+  return re.split('[\s_0-9]', line)
 
 
 class Misspellings(object):
