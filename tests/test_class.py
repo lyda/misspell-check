@@ -112,9 +112,16 @@ class UtilityFunctionTestCase(unittest.TestCase):
   def testSplitWordsWithUnderscores(self):
     self.assertEqual(['one', 'two', 'three'],
                      misspellings.split_words('one_two_three'))
-
+    self.assertEqual(['one', 'two', 'three'],
+                     misspellings.split_words('one__two__three'))
     self.assertEqual(['one', 'two', 'three', 'four'],
                      misspellings.split_words('one_two_three four'))
+
+  def testSplitWordsWithPunctuation(self):
+    self.assertEqual(['one', 'two'],
+                     misspellings.split_words('one, two'))
+    self.assertEqual(['a', 'sentence', ''],
+                     misspellings.split_words('a sentence.'))
 
   def testSplitWordsWithNumbers(self):
     self.assertEqual(['upper', 'lower'],
@@ -123,10 +130,8 @@ class UtilityFunctionTestCase(unittest.TestCase):
   def testSplitWordsWithCamelCase(self):
     self.assertEqual(['one', 'Two', 'Three'],
                      misspellings.split_words('oneTwoThree'))
-
     self.assertEqual(['one', 'Two', 'Three', 'four'],
                      misspellings.split_words('oneTwoThree_four'))
-
     self.assertEqual(['one', 'Two', 'Three', 'four', 'five'],
                      misspellings.split_words('oneTwoThree_four five'))
 

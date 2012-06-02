@@ -20,7 +20,7 @@ def split_words(line):
   # Normalize any camel cased words first
   line = re.sub('([a-z])([A-Z][a-z])', r'\1 \2', line)
 
-  return re.split('[\s_0-9]', line)
+  return re.split('[\s_0-9,\.]+', line)
 
 
 class Misspellings(object):
