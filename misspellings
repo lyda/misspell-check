@@ -82,7 +82,7 @@ def esc_file(s):
 def output_normal(ms):
   errors, results = ms.check()
   for res in results:
-    print('%s[%d]: %s -> %s' % (res[0], res[1], res[2], ','.join(
+    print('%s:%d: %s -> %s' % (res[0], res[1], res[2], ','.join(
       ['"%s"' % w for w in ms.suggestions(res[2])])))
   for err in errors:
     print('ERROR: %s' % err)
