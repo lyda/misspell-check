@@ -41,6 +41,17 @@ or bug fixes. To run all the unit tests run ``./setup.py test``.
 
 Unit tests are run on `Travis`_ for all supported python versions.
 
+TODO
+====
+Some items on the TODO list:
+
+* Implement option to interactively fix files.
+* Give some thought to supporting multiple languages?
+* Might a "common misspellings" list be different for different English
+  users - might an American make one set of mistakes while a German
+  writing English make another? Source of this data?
+* Fix pip upgrade bug.
+
 Credits
 =======
 - `Kevin Lyda`_: Initial shell goo and python version.
