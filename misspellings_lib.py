@@ -3,28 +3,15 @@ from __future__ import with_statement
 
 from collections import defaultdict
 import os
+import re
 import sys
-
-
-def same_case(source, destination):
-  """Return destination with same case as source."""
-  if source and source[:1].isupper():
-      return destination.capitalize()
-  else:
-    return destination
-
-
-def split_words(line):
-  """Return the list of words contained in a line."""
-  import re
-  # Normalize any camel cased words first
-  line = re.sub('([a-z])([A-Z][a-z])', r'\1 \2', line)
-
-  return re.split('[\s_0-9,\.]+', line)
 
 
 class Misspellings(object):
   """Detects misspelled words in files."""
+
+  _norm_regex = re.compile('([a-z])([A-Z][a-z])')
+  _split_regex = re.compile('[\s_0-9,\.]+')
 
   def __init__(self, files=None, misspelling_file=None):
     """Initialises an Misspellings instance.
@@ -60,6 +47,13 @@ class Misspellings(object):
     else:
       self._files.extend(files)
 
+
+  def _split_words(self, line):
+    """Return the list of words contained in a line."""
+    # Normalize any camel cased words first
+    line = self._norm_regex.sub(r'\1 \2', line)
+    return self._split_regex.split(line)
+
   def check(self):
     """Checks the files for misspellings.
 
@@ -77,7 +71,7 @@ class Misspellings(object):
           with open(fn, 'r') as f:
             line_ct = 1
             for line in f:
-              for word in split_words(line):
+              for word in self._split_words(line):
                 if (word in self._misspelling_dict or
                     word.lower() in self._misspelling_dict):
                   results.append([fn, line_ct, word])
@@ -85,6 +79,13 @@ class Misspellings(object):
         except IOError:
           errors.append('%s' % sys.exc_info()[1])
     return errors, results
+
+  def _same_case(self, source, destination):
+    """Return destination with same case as source."""
+    if source and source[:1].isupper():
+        return destination.capitalize()
+    else:
+      return destination
 
   def suggestions(self, word):
     """Returns a list of suggestions for a misspelled word.
@@ -97,7 +98,7 @@ class Misspellings(object):
     """
     suggestions = set(self._misspelling_dict.get(word, [])).union(
         set(self._misspelling_dict.get(word.lower(), [])))
-    return [same_case(source=word, destination=w) for w in suggestions]
+    return [self._same_case(source=word, destination=w) for w in suggestions]
 
   def dumpMisspellingList(self):
     results = []
