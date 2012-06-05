@@ -7,7 +7,6 @@ misspellings
 
 Spell checker for code
 ======================
-
 This is a Python library and tool to check for misspelled words in
 source code. It does this by looking for words from a list of
 common misspellings. The dictionary it uses to do this is based
@@ -35,7 +34,6 @@ source tree as an example)::
 
 Contributions
 =============
-
 Contributions are welcome! Please add unit tests for new features
 or bug fixes. To run all the unit tests run ``./setup.py test``.
 
