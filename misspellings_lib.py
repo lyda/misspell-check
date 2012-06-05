@@ -83,7 +83,7 @@ class Misspellings(object):
   def _same_case(self, source, destination):
     """Return destination with same case as source."""
     if source and source[:1].isupper():
-        return destination.capitalize()
+      return destination.capitalize()
     else:
       return destination
 
@@ -2414,7 +2414,8 @@ class Misspellings(object):
     'manisfestations': ['manifestations'],
     'manoeuverability': ['maneuverability'],
     'manouver': ['maneuver', 'manoeuvre'],
-    'manouverability': ['maneuverability', 'manoeuvrability', 'manoeuverability'],
+    'manouverability': ['maneuverability', 'manoeuvrability',
+                        'manoeuverability'],
     'manouverable': ['maneuverable', 'manoeuvrable'],
     'manouvers': ['maneuvers', 'manoeuvres'],
     'mantained': ['maintained'],

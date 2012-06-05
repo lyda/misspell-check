@@ -80,6 +80,7 @@ def esc_file(s):
 
 # Output routines.
 def output_normal(ms):
+  """Output a list of misspelled words and their corrections."""
   errors, results = ms.check()
   for res in results:
     print('%s:%d: %s -> %s' % (res[0], res[1], res[2], ','.join(
@@ -89,6 +90,7 @@ def output_normal(ms):
 
 
 def output_sed_script(ms, parser, opts):
+  """Output a series of portable sed commands to change the file."""
   errors, results = ms.check()
   if os.path.exists(opts.script_output):
     # Emit an error is the file already exists in case the user
