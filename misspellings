@@ -70,12 +70,12 @@ def parse_file_list(filename):
       f.close()
 
 
-def esc_sed(s):
-  return s.replace('"', '\\"').replace('/', '\\/')
+def esc_sed(raw_text):
+  return raw_text.replace('"', '\\"').replace('/', '\\/')
 
 
-def esc_file(s):
-  return s.replace('"', '\\"')
+def esc_file(raw_text):
+  return raw_text.replace('"', '\\"')
 
 
 # Output routines.
@@ -152,8 +152,8 @@ def main():
   ms = misspellings.Misspellings(files=files,
                                  misspelling_file=opts.ms_file)
   if opts.dump_ms:
-    for w, c in ms.dumpMisspellingList():
-      print('%s %s' % (w, c))
+    for word, correction in ms.dumpMisspellingList():
+      print('%s %s' % (word, correction))
   if not opts.interactive:
     if not opts.script_output:
       output_normal(ms)
@@ -161,11 +161,6 @@ def main():
       output_sed_script(ms, parser, opts)
   else:
     print('Interactive mode not implemented yet.')
-    results.sort(cmp=cmp_rev_line)
-    for res in results:
-      print_file_context(res[0], res[1])
-      print('%s -> "%s"' % (res[2], ','.join(
-        ['"%s"' % w for w in ms.suggestions(res[2])])))
 
 if __name__ == '__main__':
   sys.exit(main())
