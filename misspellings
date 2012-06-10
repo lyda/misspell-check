@@ -6,8 +6,6 @@ from __future__ import with_statement
 import optparse
 import os
 import sys
-BASE_PATH = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(BASE_PATH, '..'))
 import misspellings_lib as misspellings
 
 
