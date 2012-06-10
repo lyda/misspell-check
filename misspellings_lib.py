@@ -47,7 +47,6 @@ class Misspellings(object):
     else:
       self._files.extend(files)
 
-
   def _split_words(self, line):
     """Return the list of words contained in a line."""
     # Normalize any camel cased words first
