@@ -140,11 +140,15 @@ class InstallCmd(install):
                             os.path.join(manpage_dir, manpage_file),
                             dry_run=self.dry_run)
 
-setup(
-  cmdclass={'test': TestCmd,
+# Only override install if not being run by setuptools.
+cmdclass = {'test': TestCmd,
             'dist_clean': CleanCmd,
-            'install': InstallCmd,
-            },
+            }
+if 'setuptools' not in dir():
+  cmdclass['install'] = InstallCmd
+
+setup(
+  cmdclass=cmdclass,
   name='misspellings',
   version='1.4',
   url='https://github.com/lyda/misspell-check',
