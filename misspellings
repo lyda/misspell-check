@@ -139,7 +139,7 @@ def main():
   opts, files = parser.parse_args()
 
   if opts.version:
-    print('Version 1.4')
+    print('Version 1.5')
     return 0
   elif opts.file_list:
     try:
