@@ -124,7 +124,7 @@ class InstallCmd(install):
 
   def run(self):
     install.run(self)
-    manpages=['doc/misspellings.1']
+    manpages = ['doc/misspellings.1']
     if self.manprefix:
       for manpage in manpages:
         section = manpage.split('/')[-1].split('.')[-1]
@@ -144,7 +144,7 @@ setup(
   cmdclass={'test': TestCmd,
             'dist_clean': CleanCmd,
             'install': InstallCmd,
-           },
+            },
   name='misspellings',
   version='1.4',
   url='https://github.com/lyda/misspell-check',
@@ -159,14 +159,14 @@ setup(
   platforms=['POSIX'],
   # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
   classifiers=['Development Status :: 5 - Production/Stable',
-                 'Environment :: Console',
-                 'License :: OSI Approved'
-                 ' :: GNU General Public License v3 (GPLv3)',
-                 'Operating System :: OS Independent',
-                 'Programming Language :: Python :: 2.5',
-                 'Programming Language :: Python :: 2.6',
-                 'Programming Language :: Python :: 2.7',
-                 'Programming Language :: Python :: 3',
-                 'Topic :: Utilities',
-                 ],
+               'Environment :: Console',
+               'License :: OSI Approved'
+               ' :: GNU General Public License v3 (GPLv3)',
+               'Operating System :: OS Independent',
+               'Programming Language :: Python :: 2.5',
+               'Programming Language :: Python :: 2.6',
+               'Programming Language :: Python :: 2.7',
+               'Programming Language :: Python :: 3',
+               'Topic :: Utilities',
+               ],
 )
