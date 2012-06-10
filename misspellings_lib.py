@@ -1,7 +1,12 @@
+"""Misspellings module.
+
+   Take a list of files, check them against a list of misspelled words.
+"""
+
 # For Python 2.5
 from __future__ import with_statement
-
 from collections import defaultdict
+
 import os
 import re
 import sys
@@ -99,7 +104,8 @@ class Misspellings(object):
         set(self._misspelling_dict.get(word.lower(), [])))
     return [self._same_case(source=word, destination=w) for w in suggestions]
 
-  def dumpMisspellingList(self):
+  def dump_misspelling_list(self):
+    """Returns a list of misspelled words and corrections."""
     results = []
     for bad_word in sorted(self._misspelling_dict.keys()):
       for correction in self._misspelling_dict[bad_word]:

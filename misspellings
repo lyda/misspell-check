@@ -1,4 +1,5 @@
 #!/usr/bin/python
+"""Check files against a list of commonly misspelled words."""
 
 # For Python 2.5
 from __future__ import with_statement
@@ -15,11 +16,13 @@ class Suggestions(object):
     self.last_suggestions = {}
 
   def _get_a_line(self, filename, lineno):
+    """Read a specific line from a file."""
     # Perhaps caching this would be nice, but assuming not an insane
     # number of misspellings.
     return open(filename, 'r').readlines()[lineno - 1].rstrip()
 
   def get_suggestion(self, filename, lineno, word, suggestions):
+    """Show line from file, a misspelled word and request replacement."""
     if word not in self.last_suggestions:
       self.last_suggestions[word] = suggestions[0]
     line = self._get_a_line(filename, lineno)
@@ -35,6 +38,7 @@ class Suggestions(object):
 
 
 def print_file_context(fn, target_line_num, context=5):
+  """Show a line from a file in context."""
   line_num = 1
   start_line = target_line_num - context
   end_line = target_line_num + context
@@ -48,14 +52,8 @@ def print_file_context(fn, target_line_num, context=5):
       line_num += 1
 
 
-def cmp_rev_line(a, b):
-  file_cmp = cmp(a[0], b[0])
-  if file_cmp == 0:
-    return cmp(b[1], a[1])
-  return file_cmp
-
-
 def parse_file_list(filename):
+  """Show a line from a file in context."""
   f = sys.stdin
   try:
     if filename != '-':
@@ -69,11 +67,13 @@ def parse_file_list(filename):
 
 
 def esc_sed(raw_text):
+  """Escape chars for a sed command on a shell command line."""
   return raw_text.replace('"', '\\"').replace('/', '\\/')
 
 
 def esc_file(raw_text):
-  return raw_text.replace('"', '\\"')
+  """Escape chars for a file name on a shell command line."""
+  return raw_text.replace('\'', '\'"\'"\'')
 
 
 # Output routines.
@@ -114,6 +114,7 @@ def output_sed_script(ms, parser, opts):
 
 
 def main():
+  """main function."""
   parser = optparse.OptionParser(
       usage='Usage: misspellings [-f file_list] [files]',
       description='Checks files for common spelling mistakes.',
@@ -150,7 +151,7 @@ def main():
   ms = misspellings.Misspellings(files=files,
                                  misspelling_file=opts.ms_file)
   if opts.dump_ms:
-    for word, correction in ms.dumpMisspellingList():
+    for word, correction in ms.dump_misspelling_list():
       print('%s %s' % (word, correction))
   if not opts.interactive:
     if not opts.script_output:

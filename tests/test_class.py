@@ -37,15 +37,15 @@ class MisspellingsTestCase(unittest.TestCase):
     with open(misspelling_file) as msf:
       for unused_line in msf:
         lines += 1
-    self.assertEqual(len(ms.dumpMisspellingList()), lines)
+    self.assertEqual(len(ms.dump_misspelling_list()), lines)
 
   def testExampleSameAsDefault(self):
     dms = misspellings.Misspellings()
     ems = misspellings.Misspellings(
         misspelling_file=os.path.join(BASE_PATH, 'example_msl.txt'))
     # wc -l example_msl.txt
-    default_msl = dms.dumpMisspellingList()
-    example_msl = ems.dumpMisspellingList()
+    default_msl = dms.dump_misspelling_list()
+    example_msl = ems.dump_misspelling_list()
     for fn, msl in (('msl_ex', example_msl), ('msl_de', default_msl)):
       f = open(os.path.join(LOG_PATH,
                             'testExampleSameAsDefault.%s.tmp' % fn), 'w')

@@ -36,8 +36,10 @@ Contributions
 =============
 Contributions are welcome! Please add unit tests for new features
 or bug fixes. To run all the unit tests run ``./setup.py test``.
+If you have `tox`_ installed, just run ``tox``.
 
-Unit tests are run on `Travis`_ for all supported python versions.
+Note that tests are run on `Travis`_ for all supported python
+versions whenever the tree on github is pushed to.
 
 TODO
 ====
@@ -59,6 +61,7 @@ Credits
 - `Maciej Blizinski`_: Potential use in opencsw pushed move to python.
 - `Ville Skyttä`_: Sped up wordification, editor-friendly reporting.
 
+.. _`tox`: http://pypi.python.org/pypi/tox
 .. _`Travis`: http://travis-ci.org/#!/lyda/misspell-check
 .. _`Kevin Lyda`: https://github.com/lyda
 .. _`myint`: https://github.com/myint
