@@ -38,6 +38,10 @@ Contributions are welcome! Please add unit tests for new features
 or bug fixes. To run all the unit tests run ``./setup.py test``.
 If you have `tox`_ installed, just run ``tox``.
 
+You can review `coverage`_ of added tests by running
+``coverage run setup.py test`` and then running
+``coverage report -m``.
+
 Note that tests are run on `Travis`_ for all supported python
 versions whenever the tree on github is pushed to.
 
@@ -62,6 +66,7 @@ Credits
 - `Ville Skyttä`_: Sped up wordification, editor-friendly reporting.
 
 .. _`tox`: http://pypi.python.org/pypi/tox
+.. _`coverage`: http://pypi.python.org/pypi/coverage
 .. _`Travis`: http://travis-ci.org/#!/lyda/misspell-check
 .. _`Kevin Lyda`: https://github.com/lyda
 .. _`myint`: https://github.com/myint

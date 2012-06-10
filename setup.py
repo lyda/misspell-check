@@ -53,7 +53,7 @@ class CleanCmd(Command):
   def run(self):
     # Configure for this project.
     suffixes2del = ['MANIFEST', '.pyc', '.test_out']
-    dirs2del = ['./build', './dist', './tests/logs']
+    dirs2del = ['./build', './dist', './tests/logs', './.tox', './.coverage']
     dirs2ign = ['./.git']
     # End config.
     doomed = set()
@@ -150,7 +150,7 @@ if 'setuptools' not in dir():
 setup(
   cmdclass=cmdclass,
   name='misspellings',
-  version='1.5',
+  version='2.0a',
   url='https://github.com/lyda/misspell-check',
   author='Kevin Lyda',
   author_email='kevin@ie.suberic.net',
