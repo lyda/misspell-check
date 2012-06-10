@@ -49,11 +49,13 @@ Some items on the TODO list:
   users - might an American make one set of mistakes while a German
   writing English make another? Source of this data?
 * Fix pip upgrade bug.
+* Fix sed flag.
 
 Credits
 =======
 - `Kevin Lyda`_: Initial shell goo and python version.
 - `myint`_: Better python idioms and style. Mixed case support.
+            Travis support.
 - `Maciej Blizinski`_: Potential use in opencsw pushed move to python.
 - `Ville Skyttä`_: Sped up wordification, editor-friendly reporting.
 
