@@ -106,6 +106,7 @@ class CleanCmd(Command):
           except:
             log.warn('unable to remove "%s"', os.path.normpath(accused))
 
+
 class InstallCmd(install):
   user_options = install.user_options[:]
   user_options.extend([('manprefix=', None,
@@ -117,7 +118,7 @@ class InstallCmd(install):
 
   def finalize_options(self):
     install.finalize_options(self)
-    if self.manprefix is None :
+    if self.manprefix is None:
       self.manprefix = os.path.join(self.install_scripts,
                                     '..', 'share', 'man')
 
@@ -162,6 +163,7 @@ setup(
                  'License :: OSI Approved'
                  ' :: GNU General Public License v3 (GPLv3)',
                  'Operating System :: OS Independent',
+                 'Programming Language :: Python :: 2.5',
                  'Programming Language :: Python :: 2.6',
                  'Programming Language :: Python :: 2.7',
                  'Programming Language :: Python :: 3',
