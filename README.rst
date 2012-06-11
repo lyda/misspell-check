@@ -61,7 +61,7 @@ Credits
 =======
 - `Kevin Lyda`_: Initial shell goo and python version.
 - `myint`_: Better python idioms and style. Mixed case support.
-            Travis support.
+  Travis/tox support.
 - `Maciej Blizinski`_: Potential use in opencsw pushed move to python.
 - `Ville Skyttä`_: Sped up wordification, editor-friendly reporting.
 
