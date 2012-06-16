@@ -74,7 +74,7 @@ min-public-methods=2
 max-public-methods=20
 
 [IMPORTS]
-deprecated-modules=regsub,string,TERMIOS,Bastion,rexec
+deprecated-modules=regsub,TERMIOS,Bastion,rexec
 import-graph=
 ext-import-graph=
 int-import-graph=
