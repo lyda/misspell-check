@@ -54,7 +54,9 @@ Some items on the TODO list:
 * Might a "common misspellings" list be different for different English
   users - might an American make one set of mistakes while a German
   writing English make another? Source of this data?
-* Fix sed flag.
+* Fix sed flag.  Have it support sed -i optionally, have it output all
+  unambiguous sed commands, have it be more careful on what it
+  replaces. It might also be an idea to have a perl output option.
 * Use generators to allow finding errors as you go. Currently misspellings
   grabs all files first, then checks them, which can take a while.
 
