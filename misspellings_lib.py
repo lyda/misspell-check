@@ -14,7 +14,7 @@ import string
 
 
 def normalize(word):
-  """Return word with symbols strips from its ends."""
+  """Return word with symbols stripped from its ends."""
   return word.strip(string.punctuation)
 
 
