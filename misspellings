@@ -10,22 +10,23 @@ import sys
 import misspellings_lib as misspellings
 
 
+def get_a_line(filename, lineno):
+  """Read a specific line from a file."""
+  # Perhaps caching this would be nice, but assuming not an insane
+  # number of misspellings.
+  return open(filename, 'r').readlines()[lineno - 1].rstrip()
+
+
 class Suggestions(object):
   """Class to query user on which correction should be used."""
   def __init__(self):
     self.last_suggestions = {}
 
-  def _get_a_line(self, filename, lineno):
-    """Read a specific line from a file."""
-    # Perhaps caching this would be nice, but assuming not an insane
-    # number of misspellings.
-    return open(filename, 'r').readlines()[lineno - 1].rstrip()
-
   def get_suggestion(self, filename, lineno, word, suggestions):
     """Show line from file, a misspelled word and request replacement."""
     if word not in self.last_suggestions:
       self.last_suggestions[word] = suggestions[0]
-    line = self._get_a_line(filename, lineno)
+    line = get_a_line(filename, lineno)
     sys.stdout.write('> %s\nReplace "%s" with one of %s\nChoose [%s]:'
                      % (line, word, ','.join(suggestions),
                         self.last_suggestions[word]))

@@ -70,7 +70,7 @@ max-branchs=12
 max-statements=50
 max-parents=7
 max-attributes=7
-min-public-methods=2
+min-public-methods=1
 max-public-methods=20
 
 [IMPORTS]
