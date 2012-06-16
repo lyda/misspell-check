@@ -86,62 +86,54 @@ class MisspellingsTestCase(unittest.TestCase):
 
 class UtilityFunctionTestCase(unittest.TestCase):
   def testSameCase(self):
-    ms = misspellings.Misspellings()
-    self.assertEqual('Apple', ms._same_case(source='Apple',
+    self.assertEqual('Apple', misspellings.same_case(source='Apple',
                                                      destination='apple'))
 
     # Do not make lowercase as "Apple" may be the first word in a sentence.
-    self.assertEqual('Apple', ms._same_case(source='apple',
+    self.assertEqual('Apple', misspellings.same_case(source='apple',
                                                      destination='Apple'))
 
   def testSameCaseWithEmptyDestination(self):
-    ms = misspellings.Misspellings()
-    self.assertEqual('', ms._same_case(source='apple',
+    self.assertEqual('', misspellings.same_case(source='apple',
                                                 destination=''))
-    self.assertEqual('', ms._same_case(source='Apple',
+    self.assertEqual('', misspellings.same_case(source='Apple',
                                                 destination=''))
 
   def testSameCaseWithEmptySource(self):
-    ms = misspellings.Misspellings()
-    self.assertEqual('apple', ms._same_case(source='',
+    self.assertEqual('apple', misspellings.same_case(source='',
                                                      destination='apple'))
-    self.assertEqual('Apple', ms._same_case(source='',
+    self.assertEqual('Apple', misspellings.same_case(source='',
                                                      destination='Apple'))
 
   def testSplitWords(self):
-    ms = misspellings.Misspellings()
     self.assertEqual(['one', 'two', 'three'],
-                     ms._split_words('one two three'))
+                     misspellings.split_words('one two three'))
 
   def testSplitWordsWithUnderscores(self):
-    ms = misspellings.Misspellings()
     self.assertEqual(['one', 'two', 'three'],
-                     ms._split_words('one_two_three'))
+                     misspellings.split_words('one_two_three'))
     self.assertEqual(['one', 'two', 'three'],
-                     ms._split_words('one__two__three'))
+                     misspellings.split_words('one__two__three'))
     self.assertEqual(['one', 'two', 'three', 'four'],
-                     ms._split_words('one_two_three four'))
+                     misspellings.split_words('one_two_three four'))
 
   def testSplitWordsWithPunctuation(self):
-    ms = misspellings.Misspellings()
     self.assertEqual(['one', 'two'],
-                     ms._split_words('one, two'))
+                     misspellings.split_words('one, two'))
     self.assertEqual(['a', 'sentence', ''],
-                     ms._split_words('a sentence.'))
+                     misspellings.split_words('a sentence.'))
 
   def testSplitWordsWithNumbers(self):
-    ms = misspellings.Misspellings()
     self.assertEqual(['upper', 'lower'],
-                     ms._split_words('upper2lower'))
+                     misspellings.split_words('upper2lower'))
 
   def testSplitWordsWithCamelCase(self):
-    ms = misspellings.Misspellings()
     self.assertEqual(['one', 'Two', 'Three'],
-                     ms._split_words('oneTwoThree'))
+                     misspellings.split_words('oneTwoThree'))
     self.assertEqual(['one', 'Two', 'Three', 'four'],
-                     ms._split_words('oneTwoThree_four'))
+                     misspellings.split_words('oneTwoThree_four'))
     self.assertEqual(['one', 'Two', 'Three', 'four', 'five'],
-                     ms._split_words('oneTwoThree_four five'))
+                     misspellings.split_words('oneTwoThree_four five'))
 
     def testNormalize(self):
       self.assertEqual('alpha', misspellings.normalize('"alpha".'))
