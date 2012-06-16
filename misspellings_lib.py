@@ -10,6 +10,12 @@ from collections import defaultdict
 import os
 import re
 import sys
+import string
+
+
+def normalize(word):
+  """Return word with symbols stripped from its ends."""
+  return word.strip(string.punctuation)
 
 
 class Misspellings(object):
@@ -56,7 +62,7 @@ class Misspellings(object):
     """Return the list of words contained in a line."""
     # Normalize any camel cased words first
     line = self._norm_regex.sub(r'\1 \2', line)
-    return self._split_regex.split(line)
+    return [normalize(w) for w in self._split_regex.split(line)]
 
   def check(self):
     """Checks the files for misspellings.

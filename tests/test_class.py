@@ -143,6 +143,9 @@ class UtilityFunctionTestCase(unittest.TestCase):
     self.assertEqual(['one', 'Two', 'Three', 'four', 'five'],
                      ms._split_words('oneTwoThree_four five'))
 
+    def testNormalize(self):
+      self.assertEqual('alpha', misspellings.normalize('"alpha".'))
+
 
 if __name__ == '__main__':
   unittest.main()
