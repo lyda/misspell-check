@@ -54,8 +54,9 @@ Some items on the TODO list:
 * Might a "common misspellings" list be different for different English
   users - might an American make one set of mistakes while a German
   writing English make another? Source of this data?
-* Fix pip upgrade bug.
 * Fix sed flag.
+* Use generators to allow finding errors as you go. Currently misspellings
+  grabs all files first, then checks them, which can take a while.
 
 Credits
 =======

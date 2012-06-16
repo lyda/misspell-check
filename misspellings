@@ -113,6 +113,18 @@ def output_sed_script(ms, parser, opts):
   sed_script.close()
 
 
+def expand_directories(path_list):
+  """Return list with directories replaced their contained files."""
+  new_path_list = []
+  for path in path_list:
+    if os.path.isdir(path):
+      for root, _, filenames in os.walk(path):
+        new_path_list += [os.path.join(root, name) for name in filenames]
+    else:
+      new_path_list.append(path)
+  return new_path_list
+
+
 def main():
   """main function."""
   parser = optparse.OptionParser(
@@ -148,7 +160,7 @@ def main():
       print('ERROR: %s' % sys.exc_info()[1])
       return 1
 
-  ms = misspellings.Misspellings(files=files,
+  ms = misspellings.Misspellings(files=expand_directories(files),
                                  misspelling_file=opts.ms_file)
   if opts.dump_ms:
     for word, correction in ms.dump_misspelling_list():
