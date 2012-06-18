@@ -59,6 +59,7 @@ Some items on the TODO list:
   replaces. It might also be an idea to have a perl output option.
 * Use generators to allow finding errors as you go. Currently misspellings
   grabs all files first, then checks them, which can take a while.
+* Lacking tests for misspellings cli.
 
 Credits
 =======
