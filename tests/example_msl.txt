@@ -1167,6 +1167,7 @@ curriculem curriculum
 cxan cyan
 cyclinder cylinder
 dacquiri daiquiri
+daed dead
 dael deal
 dael dial
 dael dahl
@@ -1274,6 +1275,7 @@ devasted devastated
 develope develop
 developement development
 developped developed
+developper developer
 develpment development
 devels delves
 devestated devastated
