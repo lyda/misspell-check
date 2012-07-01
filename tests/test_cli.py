@@ -48,8 +48,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     (output, error_output) = p.communicate()
-    self.assertEqual(error_output.decode('utf8'), '')
-    self.assertEqual(len(output.decode('utf8').split('\n')), 2)
+    self.assertEqual(output.decode('utf8'), '')
+    self.assertEqual(len(error_output.decode('utf8').split('\n')), 2)
     self.assertEqual(p.returncode, 0)
 
   def testGoodFlagF(self):
@@ -68,8 +68,8 @@ class MisspellingsCLITestCase(unittest.TestCase):
                          stderr=subprocess.PIPE,
                          stdout=subprocess.PIPE)
     (output, error_output) = p.communicate()
-    self.assertEqual(error_output.decode('utf8'), '')
-    self.assertEqual(len(output.decode('utf8').split('\n')), 2)
+    self.assertEqual(output.decode('utf8'), '')
+    self.assertEqual(len(error_output.decode('utf8').split('\n')), 2)
     self.assertEqual(p.returncode, 0)
 
   def testGoodFlagD(self):
