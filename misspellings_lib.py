@@ -95,7 +95,7 @@ class Misspellings(object):
                     word.lower() in self._misspelling_dict):
                   results.append([fn, line_ct, word])
               line_ct += 1
-        except IOError:
+        except (IOError, UnicodeDecodeError):
           errors.append('%s' % sys.exc_info()[1])
     return errors, results
 

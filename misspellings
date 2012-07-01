@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 """Check files against a list of commonly misspelled words."""
 
 # For Python 2.5
