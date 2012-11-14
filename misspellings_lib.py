@@ -13,7 +13,7 @@ import sys
 import string
 
 _NORM_REGEX = re.compile('([a-z])([A-Z][a-z])')
-_SPLIT_REGEX = re.compile('[\s_0-9,\.]+')
+_WORD_REGEX = re.compile('[\s_0-9<>/,\.]+')
 
 
 def normalize(word):
@@ -25,7 +25,7 @@ def split_words(line):
   """Return the list of words contained in a line."""
   # Normalize any camel cased words first
   line = _NORM_REGEX.sub(r'\1 \2', line)
-  return [normalize(w) for w in _SPLIT_REGEX.split(line)]
+  return [normalize(w) for w in _WORD_REGEX.split(line)]
 
 
 def same_case(source, destination):
