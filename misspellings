@@ -6,6 +6,7 @@ from __future__ import with_statement
 
 import optparse
 import os
+import re
 import sys
 import misspellings_lib as misspellings
 
@@ -113,6 +114,7 @@ def output_sed_script(ms, parser, opts):
     sys.stderr.write('ERROR: %s\n' % err)
   sed_script.close()
 
+_excluded_re = re.compile('\.(py[co]|s?o)$')
 
 def expand_directories(path_list):
   """Return list with directories replaced their contained files."""
@@ -120,7 +122,8 @@ def expand_directories(path_list):
   for path in path_list:
     if os.path.isdir(path):
       for root, _, filenames in os.walk(path):
-        new_path_list += [os.path.join(root, name) for name in filenames]
+        new_path_list += [os.path.join(root, name) for name in filenames
+                          if not _excluded_re.search(name)]
     else:
       new_path_list.append(path)
   return new_path_list
