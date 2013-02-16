@@ -152,7 +152,7 @@ if 'setuptools' not in dir():
 setup(
   cmdclass=cmdclass,
   name='misspellings',
-  version='2.0a',
+  version='2.0b',
   url='https://github.com/lyda/misspell-check',
   author='Kevin Lyda',
   author_email='kevin@ie.suberic.net',
