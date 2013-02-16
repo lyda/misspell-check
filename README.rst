@@ -45,6 +45,15 @@ You can review `coverage`_ of added tests by running
 Note that tests are run on `Travis`_ for all supported python
 versions whenever the tree on github is pushed to.
 
+The code is available in the following locations:
+
+- Bitbucket: https://bitbucket.org/lyda/misspell-check/src
+- code.google: http://code.google.com/p/misspell-check/
+- Github: https://github.com/lyda/misspell-check
+- Gitorious: https://gitorious.org/uu/misspell-check
+
+Pull requests on any of those platforms or emailed patches are fine.
+
 TODO
 ====
 Some items on the TODO list:
