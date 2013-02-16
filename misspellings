@@ -114,16 +114,20 @@ def output_sed_script(ms, parser, opts):
     sys.stderr.write('ERROR: %s\n' % err)
   sed_script.close()
 
-_excluded_re = re.compile('\.(py[co]|s?o)$')
+_excluded_re = re.compile('\.(py[co]|s?o|a)$')
+_excluded_dirs = (".bzr", ".git", ".hg", ".svn", "CVS")
 
 def expand_directories(path_list):
   """Return list with directories replaced their contained files."""
   new_path_list = []
   for path in path_list:
     if os.path.isdir(path):
-      for root, _, filenames in os.walk(path):
+      for root, dirnames, filenames in os.walk(path):
         new_path_list += [os.path.join(root, name) for name in filenames
                           if not _excluded_re.search(name)]
+        for exdir in _excluded_dirs:
+          if exdir in dirnames:
+            dirnames.remove(exdir)
     else:
       new_path_list.append(path)
   return new_path_list
