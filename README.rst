@@ -51,6 +51,7 @@ The code is available in the following locations:
 - code.google: http://code.google.com/p/misspell-check/
 - Github: https://github.com/lyda/misspell-check
 - Gitorious: https://gitorious.org/uu/misspell-check
+- Sourceforge: https://sourceforge.net/p/misspell-check
 
 Pull requests on any of those platforms or emailed patches are fine.
 
