@@ -1,8 +1,8 @@
 ============
 misspellings
 ============
-.. image:: https://secure.travis-ci.org/lyda/misspell-check.png
-   :target: https://secure.travis-ci.org/lyda/misspell-check
+.. image:: https://api.travis-ci.org/lyda/misspell-check.png
+   :target: https://travis-ci.org/lyda/misspell-check
    :alt: Build status
 
 Spell checker for code
