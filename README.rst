@@ -1,7 +1,7 @@
 ============
 misspellings
 ============
-.. image:: https://api.travis-ci.org/lyda/misspell-check.png
+.. image:: https://travis-ci.org/lyda/misspell-check.png?branch=master
    :target: https://travis-ci.org/lyda/misspell-check
    :alt: Build status
 
@@ -74,7 +74,7 @@ Some items on the TODO list:
 Credits
 =======
 - `Kevin Lyda`_: Initial shell goo and python version.
-- `myint`_: Better python idioms and style. Mixed case support.
+- `Steven Myint`_: Better python idioms and style. Mixed case support.
   Travis/tox support.
 - `Maciej Blizinski`_: Potential use in opencsw pushed move to python.
 - `Ville Skyttä`_: Sped up wordification, editor-friendly reporting.
@@ -83,6 +83,6 @@ Credits
 .. _`coverage`: http://pypi.python.org/pypi/coverage
 .. _`Travis`: http://travis-ci.org/#!/lyda/misspell-check
 .. _`Kevin Lyda`: https://github.com/lyda
-.. _`myint`: https://github.com/myint
+.. _`Steven Myint`: https://github.com/myint
 .. _`Maciej Blizinski`: https://github.com/automatthias
 .. _`Ville Skyttä`: https://github.com/scop
