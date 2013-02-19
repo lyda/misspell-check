@@ -112,7 +112,8 @@ class Misspellings(object):
     """
     suggestions = set(self._misspelling_dict.get(word, [])).union(
         set(self._misspelling_dict.get(word.lower(), [])))
-    return [same_case(source=word, destination=w) for w in suggestions]
+    return sorted([same_case(source=word, destination=w)
+                   for w in suggestions])
 
   def dump_misspelling_list(self):
     """Returns a list of misspelled words and corrections."""
