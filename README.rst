@@ -45,7 +45,10 @@ You can review `coverage`_ of added tests by running
 Note that tests are run on `Travis`_ for all supported python
 versions whenever the tree on github is pushed to.
 
-The code is available in the following locations:
+The packaged version is available via ``pip`` or ``easy_install``
+as ``misspellings``. The project page is on `pypi`_:
+
+The source code is available in the following locations:
 
 - Bitbucket: https://bitbucket.org/lyda/misspell-check/src
 - code.google: http://code.google.com/p/misspell-check/
@@ -76,13 +79,15 @@ Credits
 - `Kevin Lyda`_: Initial shell goo and python version.
 - `Steven Myint`_: Better python idioms and style. Mixed case support.
   Travis/tox support.
-- `Maciej Blizinski`_: Potential use in opencsw pushed move to python.
+- `Maciej Blizinski`_: Potential use in `OpenCSW`_ pushed move to python.
 - `Ville Skyttä`_: Sped up wordification, editor-friendly reporting.
 
-.. _`tox`: http://pypi.python.org/pypi/tox
-.. _`coverage`: http://pypi.python.org/pypi/coverage
-.. _`Travis`: http://travis-ci.org/#!/lyda/misspell-check
+.. _`tox`: https://pypi.python.org/pypi/tox
+.. _`coverage`: https://pypi.python.org/pypi/coverage
+.. _`Travis`: https://travis-ci.org/lyda/misspell-check
 .. _`Kevin Lyda`: https://github.com/lyda
 .. _`Steven Myint`: https://github.com/myint
 .. _`Maciej Blizinski`: https://github.com/automatthias
 .. _`Ville Skyttä`: https://github.com/scop
+.. _`pypi`: https://pypi.python.org/pypi/misspellings
+.. _`OpenCSW`: http://www.opencsw.org/
