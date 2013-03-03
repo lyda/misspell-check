@@ -73,6 +73,7 @@ Some items on the TODO list:
 * Use generators to allow finding errors as you go. Currently misspellings
   grabs all files first, then checks them, which can take a while.
 * Lacking tests for misspellings cli.
+* Support UTF8: https://github.com/lyda/misspell-check/issues/16
 
 Credits
 =======
