@@ -10,3 +10,5 @@ sed "4s/Rockerfeller/Rockefeller/" "various_spellings.c" > "various_spellings.c,
 mv "various_spellings.c," "various_spellings.c"
 sed "6s/withdrawl/withdraw/" "various_spellings.c" > "various_spellings.c,"
 mv "various_spellings.c," "various_spellings.c"
+sed "7s/gardai/gardaí/" "various_spellings.c" > "various_spellings.c,"
+mv "various_spellings.c," "various_spellings.c"

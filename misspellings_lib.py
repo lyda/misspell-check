@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """Misspellings module.
 
    Take a list of files, check them against a list of misspelled words.
@@ -1858,6 +1860,7 @@ class Misspellings(object):
     'garantee': ['guarantee'],
     'garanteed': ['guaranteed'],
     'garantees': ['guarantees'],
+    'gardai': ['gardaí'],
     'garnison': ['garrison'],
     'gaurantee': ['guarantee'],
     'gauranteed': ['guaranteed'],
