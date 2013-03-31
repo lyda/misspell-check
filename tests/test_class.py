@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # For Python 2.5
 from __future__ import with_statement
@@ -135,8 +136,12 @@ class UtilityFunctionTestCase(unittest.TestCase):
     self.assertEqual(['one', 'Two', 'Three', 'four', 'five'],
                      misspellings.split_words('oneTwoThree_four five'))
 
-    def testNormalize(self):
-      self.assertEqual('alpha', misspellings.normalize('"alpha".'))
+  def testSplitWordsWithOtherCharacters(self):
+    self.assertEqual(['the', 'big', 'cat'],
+                     misspellings.split_words('the%big$cat'))
+
+  def testNormalize(self):
+    self.assertEqual('alpha', misspellings.normalize('"alpha".'))
 
 
 if __name__ == '__main__':
