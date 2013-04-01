@@ -15,7 +15,7 @@ import sys
 import string
 
 _NORM_REGEX = re.compile('([a-z])([A-Z][a-z])')
-_WORD_REGEX = re.compile('[\s_0-9<>/,\.]+')
+_WORD_REGEX = re.compile('[\s_0-9\W]+', flags=re.UNICODE)
 
 
 def normalize(word):
