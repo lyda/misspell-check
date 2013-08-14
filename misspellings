@@ -1,5 +1,17 @@
 #!/usr/bin/env python
-"""Check files against a list of commonly misspelled words."""
+"""Check files against a list of commonly misspelled words.
+
+Wikipedia contains a large number of proper nouns and technical
+terms. Traditional spell-checking in this case is problematic.
+Instead it has a page that people can use to list commonly misspelled
+words and to then use that to find misspellings.
+
+A similar approach can be taken to spell-checking (or misspell-checking)
+the files in a body of source code.
+
+This tool uses the English wordlist from Wikipedia in order to scan
+source code and identify misspelled words.
+"""
 
 # For Python 2.5
 from __future__ import with_statement
