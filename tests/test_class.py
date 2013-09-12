@@ -31,31 +31,6 @@ class MisspellingsTestCase(unittest.TestCase):
     self.assertRaises(ValueError, misspellings.Misspellings, None,
         os.path.join(BASE_PATH, 'broken_msl.txt'))
 
-  def testGoodMSList(self):
-    misspelling_file = os.path.join(BASE_PATH, 'example_msl.txt')
-    ms = misspellings.Misspellings(misspelling_file=misspelling_file)
-    lines = 0
-    with open(misspelling_file) as msf:
-      for unused_line in msf:
-        lines += 1
-    self.assertEqual(len(ms.dump_misspelling_list()), lines)
-
-  def testExampleSameAsDefault(self):
-    dms = misspellings.Misspellings()
-    ems = misspellings.Misspellings(
-        misspelling_file=os.path.join(BASE_PATH, 'example_msl.txt'))
-    # wc -l example_msl.txt
-    default_msl = dms.dump_misspelling_list()
-    example_msl = ems.dump_misspelling_list()
-    for fn, msl in (('msl_ex', example_msl), ('msl_de', default_msl)):
-      f = open(os.path.join(LOG_PATH,
-                            'testExampleSameAsDefault.%s.tmp' % fn), 'w')
-      for w, c in msl:
-        f.write('%s %s\n' % (w, c))
-      f.close()
-    self.assertEqual(default_msl, example_msl,
-        'See logs in "%s" for dump of the list.' % LOG_PATH)
-
   def testMissingFile(self):
     ms = misspellings.Misspellings(
         files=os.path.join(BASE_PATH, 'missing_source.c'))

@@ -72,18 +72,6 @@ class MisspellingsCLITestCase(unittest.TestCase):
     self.assertEqual(len(error_output.decode('utf8').split('\n')), 2)
     self.assertEqual(p.returncode, 0)
 
-  def testGoodFlagD(self):
-    p = subprocess.Popen('( "%s" -d; cat "%s" ) |sort |uniq -u |tail -1' %
-                          (CLI, 'example_msl.txt'),
-                         cwd=BASE_PATH,
-                         shell=True,
-                         stderr=subprocess.PIPE,
-                         stdout=subprocess.PIPE)
-    (output, error_output) = p.communicate()
-    self.assertEqual(error_output.decode('utf8'), '')
-    self.assertEqual(output.decode('utf8'), '')
-    self.assertEqual(p.returncode, 0)
-
   def testBadFlagM(self):
     p = subprocess.Popen([CLI, '-d', '-m', 'broken_msl.txt'],
                          cwd=BASE_PATH,
