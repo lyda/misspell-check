@@ -1,7 +1,7 @@
 ============
 misspellings
 ============
-.. image:: https://travis-ci.org/lyda/misspell-check.png?branch=master
+.. image:: https://travis-ci.org/lyda/misspell-check.svg?branch=master
    :target: https://travis-ci.org/lyda/misspell-check
    :alt: Build status
 
